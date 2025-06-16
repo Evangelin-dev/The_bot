@@ -4,11 +4,8 @@
 // import "slick-carousel/slick/slick-theme.css";
 
 // import Slider from "react-slick";
-import Slider from '../../common/Slider'; 
-// or
-import Slider from '../../Slider';
-// or
-import Slider from '@/components/Slider';
+import Slider from '../../common/Slider';
+
 const { default: PrCard } = require("@/components/Pricing/PrPeople/PrCard");
 
 const WhatWeOffer = ({ data = [] }) => {
