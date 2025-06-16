@@ -1,7 +1,7 @@
 import CustomImage from "@/components/custom/Image";
 import style from "./style.module.css";
 import HowItWorks from "@/components/Services/HowItWorks";
-import { BookYourConsultation } from "@/components/custom/BookYourConsultation";
+import BookYourConsultation from '@/components/custom/BookYourConsultation';
 
 // ...existing code...
 
