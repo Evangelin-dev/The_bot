@@ -1,0 +1,14 @@
+.article_heading {
+  font-size: 2rem;
+  padding-bottom: 2%;
+}
+
+.article_title {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: 500;
+}
+
+.article_bg {
+  background: #c1c1c127;
+}

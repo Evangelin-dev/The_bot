@@ -1,0 +1,43 @@
+.img_container {
+  width: 10vw;
+  background: white;
+}
+
+.client_logo_wrapper {
+  padding: 0.3rem;
+}
+
+.services_control_icons {
+  font-size: 3rem;
+}
+
+@media (max-width: 768px) {
+  .img_container {
+    width: 10vw !important;
+  }
+}
+
+.track {
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee 32s linear infinite;
+  mask-image: -webkit-linear-gradient(0deg, #0000, #121212 50% 50%, #0000);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+
+.track:hover {
+  /* animation: marquee 60s linear infinite !important; */
+  cursor: pointer;
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

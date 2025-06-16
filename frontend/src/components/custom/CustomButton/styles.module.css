@@ -1,0 +1,25 @@
+.bot_btn {
+  padding: 0.7rem 3rem;
+  border: none;
+  outline: none;
+  z-index: 1;
+  border-radius: 0.5rem;
+  background: linear-gradient(
+    88deg,
+    #ffa37b -11.16%,
+    #fa6bbe 46.95%,
+    #732bf7 94.89%
+  );
+  color: white;
+  width: 100%;
+}
+
+.bot_btn:hover {
+  background: linear-gradient(
+    88deg,
+    #732bf7 -11.16%,
+    #fa6bbe 46.95%,
+    #ffa37b 94.89%
+  ) !important;
+  cursor: pointer;
+}

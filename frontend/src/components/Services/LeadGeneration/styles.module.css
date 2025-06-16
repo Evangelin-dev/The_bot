@@ -1,0 +1,30 @@
+.lead_generation_title {
+  font-size: 2rem;
+}
+
+.lead_generation_sub_title {
+  letter-spacing: 0.2rem;
+}
+
+.image_container {
+  width: 25vw !important;
+}
+
+.why_choose_us_col {
+  width: calc(25% - 30px) !important;
+  min-width: calc(25.33% - 30px) !important;
+}
+
+.lead_generation_container {
+  /* width: 75vw; */
+}
+
+.lead_generation_content_description {
+  word-spacing: 0.1rem;
+  font-size: 1.2rem;
+}
+
+.how_it_works_col {
+  width: calc(33.33% - 30px);
+  min-width: calc(33.33% - 30px);
+}

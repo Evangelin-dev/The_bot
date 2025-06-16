@@ -1,0 +1,56 @@
+.marketing_strategies_title {
+  font-size: 2rem;
+}
+
+.marketing_strategies_sub_title {
+  letter-spacing: 0.2rem;
+}
+
+.image_container {
+  width: 25vw !important;
+}
+
+.marketing_strategies_content_title {
+  font-size: 1.5rem;
+}
+
+.marketing_strategies_content_description {
+  font-size: 1rem;
+}
+
+.what_we_offer_col {
+  width: calc(25% - 30px);
+  min-width: calc(25% - 30px);
+}
+
+.why_choose_us_col {
+  width: calc(33.33% - 30px);
+  min-width: calc(33.33% - 30px);
+}
+.hoverCard {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 0;
+  transition: all 0.4s ease-in-out;
+  cursor: pointer;
+  height: 100%;
+}
+
+.hoverCard:hover {
+  background: linear-gradient(135deg, rgba(255, 94, 247, 0.3), rgba(70, 170, 255, 0.3));
+  border-top-left-radius: 45px;
+  border-bottom-right-radius: 45px;
+  transform: translateX(10px);
+}
+/* Ensures all PrCards have equal height and aligned content */
+.pr_card_wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.pr_card_content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

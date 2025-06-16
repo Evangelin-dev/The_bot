@@ -1,0 +1,13 @@
+.logo_img_container {
+  position: relative;
+  height: auto;
+  width: 10vw;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .logo_img_container {
+    height: 6vh !important;
+    width: 50vw !important;
+  }
+}

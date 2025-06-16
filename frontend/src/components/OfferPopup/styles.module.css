@@ -1,0 +1,40 @@
+.lanuching_modal_bg {
+  /* background: linear-gradient(
+    88deg,
+    #ffa37b -11.16%,
+    #fa6bbe 46.95%,
+    #732bf7 94.89%
+  ); */
+
+  background: #432776;
+  color: white;
+  /* border: 1px solid white !important; */
+}
+
+.offer_btn {
+  padding: 0.7rem 3rem;
+  border: none;
+  outline: none;
+  z-index: 1;
+  border-radius: 0.5rem;
+  background: linear-gradient(
+    88deg,
+    #ffa37b -11.16%,
+    #fa6bbe 46.95%,
+    #732bf7 94.89%
+  );
+  color: white;
+}
+
+.offer_button_container {
+  position: fixed;
+  right: 0;
+  top: 32%;
+  transform: rotate(90deg);
+}
+
+@media (max-width: 768px) {
+  .offer_button_container {
+    right: -7rem;
+  }
+}

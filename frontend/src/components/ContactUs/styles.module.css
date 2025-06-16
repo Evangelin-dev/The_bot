@@ -1,0 +1,49 @@
+.contact_content_title {
+  font-size: 2rem;
+}
+
+.contact_content_sub_title {
+  font-size: 1.2rem;
+}
+
+.contact_content_li {
+  font-size: 0.9rem;
+}
+
+.contact_form_title {
+  font-size: 1.8rem;
+  color: #4c4949;
+}
+
+.contact_us_form_p {
+  padding-right: 3rem !important;
+  padding-left: 3rem !important;
+}
+
+@media (max-width: 768px) {
+  .contact_us_form_p {
+    padding-right: 0rem !important;
+    padding-left: 0rem !important;
+    margin-top: 5%;
+  }
+  .contact_content_title {
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .contact_content_sub_title {
+    font-size: 1rem;
+    text-align: center;
+    font-weight: 600;
+  }
+}
+
+.contact_us_container {
+  padding-top: 8% !important;
+  padding-bottom: 6% !important;
+}
+
+.bg_white {
+  background: white;
+}

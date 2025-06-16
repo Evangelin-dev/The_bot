@@ -1,0 +1,43 @@
+.subscription_container {
+  padding-top: 8%;
+  padding-bottom: 5%;
+}
+
+.subscription_wrapper {
+  background: #171725;
+  color: white;
+}
+
+.subscription_wrapper:hover {
+  cursor: pointer;
+  background: linear-gradient(180deg, #d8d7f4 0, #ffedf7 100%);
+  color: black !important;
+}
+
+.subscription_icon {
+  font-size: 2rem;
+}
+
+.subscription_name {
+  font-size: 1.5rem;
+}
+
+.subscription_description {
+  font-size: 0.9rem;
+  color: #a1a1a9;
+}
+
+.subscription_label {
+  color: #a1a1a9;
+  font-size: 0.9rem;
+}
+
+.subscription_label_content {
+  border-color: #a1a1a9 !important;
+}
+
+.subscription_title {
+  font-size: 2.5rem;
+  width: 50%;
+  color: white;
+}

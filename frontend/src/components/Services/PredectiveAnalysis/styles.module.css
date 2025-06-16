@@ -1,0 +1,49 @@
+.predictive_analysis_title {
+  font-size: 2rem;
+}
+
+.predictive_anlys_strategy_title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.predictive_anlys_strategy_sub_title {
+  font-size: 1rem;
+  color: #a1a1a9;
+}
+
+.predictive_anlys_strategy_description {
+  font-size: 1rem;
+  color: #a1a1a9;
+}
+
+.predictive_anlys_strategy_col {
+  width: calc(33.33% - 30px);
+  min-width: calc(33.33% - 30px);
+}
+
+.predictive_anlys_why_choose_col {
+  width: calc(25% - 30px);
+  min-width: calc(25% - 30px);
+}
+
+.predictive_anlys_why_choose_wrapper {
+  -webkit-mask-image: -webkit-linear-gradient(
+    0deg,
+    transparent,
+    #121212 10%,
+    #121212 90%,
+    transparent
+  );
+  mask-image: -webkit-linear-gradient(
+    0deg,
+    transparent,
+    #121212 10%,
+    #121212 90%,
+    transparent
+  );
+}
+
+.why_service_for_img {
+  width: 25vw;
+}

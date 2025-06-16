@@ -1,0 +1,15 @@
+.video_wrapper {
+  position: fixed;
+  width: 20vw;
+  bottom: 2%;
+  left: 1%;
+  color: white;
+  border-radius: 2%;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .video_wrapper {
+    width: 60%;
+  }
+}

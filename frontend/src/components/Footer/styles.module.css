@@ -1,0 +1,36 @@
+.footer_a {
+  font-size: 0.8rem;
+}
+
+.footer_menu_header {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.share_button {
+  font-size: 1rem;
+  color: white;
+}
+
+.share_button:hover {
+  background: linear-gradient(
+    88deg,
+    #ffa37b -11.16%,
+    #fa6bbe 46.95%,
+    #732bf7 94.89%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.footer_container {
+  padding-top: 6% !important;
+  padding-bottom: 4% !important;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 69%,
+    rgba(0, 1, 1, 0.1237088585434174) 88%,
+    rgba(0, 1, 1, 0) 100%
+  );
+}

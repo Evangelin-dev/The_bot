@@ -1,0 +1,140 @@
+.img_container {
+  position: relative;
+  height: 80vh;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .img_container {
+    height: 30vh !important;
+  }
+  .banner_title {
+    font-size: 2.5rem !important;
+  }
+  .banner_sub_title {
+    font-size: 1.2rem !important;
+    line-height: 1;
+  }
+  .banner_sub_content {
+    font-size: 0.8rem !important;
+  }
+  .banner_services_wrapper {
+    width: calc(80% - 30px) !important;
+    min-width: calc(80% - 30px) !important;
+  }
+}
+
+.banner_bg {
+  /* background-image: linear-gradient(
+    88deg,
+    #ffa37b -11.16%,
+    #fa6bbe 46.95%,
+    #732bf7 94.89%
+  ); */
+  animation: rotate 10s cubic-bezier(0.8, 0.2, 0.2, 0.8) alternate infinite;
+  /* border-radius: 34% 66% 66% 34% / 44% 57% 43% 56%; */
+
+  height: 60vh;
+  width: 40vw;
+  /* opacity: 0.4; */
+
+  background-image: radial-gradient(
+    black,
+    #ffa37bb5,
+    #fa6bbe82 46.95%,
+    #732bf7 94.89%
+  );
+  box-shadow: inset 0px 0px 10px 10px #212529;
+  /* -webkit-box-shadow: inset 0px 0px 21px 15px #1d1d4a;
+  -moz-box-shadow: inset 0px 0px 21px 15px #1d1d4a;
+  box-shadow: inset 0px 0px 21px 15px #1d1d4a; */
+}
+
+@keyframes rotate {
+  0% {
+    border-radius: 72% 28% 45% 55% / 50% 26% 74% 50%;
+  }
+  10% {
+    border-radius: 34% 66% 60% 40% / 37% 71% 29% 63%;
+  }
+  20% {
+    border-radius: 72% 28% 67% 33% / 13% 26% 74% 87%;
+  }
+  50% {
+    border-radius: 68% 32% 36% 64% / 63% 41% 59% 37%;
+  }
+  100% {
+    border-radius: 35% 65% 66% 34% / 20% 43% 57% 80%;
+  }
+}
+
+.bg_banner {
+  margin: 0 auto;
+  height: 100vh;
+}
+
+.banner_title {
+  color: #fb7bac !important;
+  font-weight: 600;
+  white-space: normal;
+  font-size: 6rem;
+  margin-bottom: 0;
+  line-height: 1;
+}
+
+.banner_sub_title {
+  font-size: 4rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.carousel_inner {
+  height: 100%;
+}
+
+.banner_sub_content {
+  font-size: 1.2rem;
+}
+
+.banner_services_wrapper {
+  text-align: center;
+  background-color: #c1c1c140;
+  min-height: 25vh;
+  width: calc(20% - 30px);
+  min-width: calc(20% - 30px);
+}
+
+.banner_services_wrapper_title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.banner_services_wrapper_content {
+  font-size: 1rem;
+}
+
+.banner_services_tile {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+
+  -webkit-mask-image: -webkit-linear-gradient(
+    0deg,
+    transparent,
+    #121212 50%,
+    #121212 50%,
+    transparent
+  );
+  mask-image: -webkit-linear-gradient(
+    0deg,
+    transparent,
+    #121212 50%,
+    #121212 50%,
+    transparent
+  );
+  scroll-behavior: smooth;
+}
+
+.services_control_icons {
+  font-size: 3rem;
+}

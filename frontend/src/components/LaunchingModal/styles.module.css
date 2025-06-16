@@ -1,0 +1,12 @@
+.lanuching_modal_bg {
+  /* background: linear-gradient(
+    88deg,
+    #ffa37b -11.16%,
+    #fa6bbe 46.95%,
+    #732bf7 94.89%
+  ); */
+
+  background: black;
+  color: white;
+  border: 1px solid white !important;
+}

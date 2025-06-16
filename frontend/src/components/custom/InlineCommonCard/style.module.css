@@ -1,0 +1,18 @@
+.pricing_services_title {
+  font-size: 1rem;
+}
+
+.pricing_services_description {
+  color: #a1a1a9;
+  font-size: 0.8rem;
+  padding-left: 2rem;
+  /* padding-bottom: 0.5rem; */
+
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+.pricing_services_description:hover {
+  color: white;
+}

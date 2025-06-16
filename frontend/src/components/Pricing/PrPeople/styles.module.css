@@ -1,0 +1,67 @@
+.pricing_people_tile {
+  border: 0.1rem solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.9rem;
+  padding: 2%;
+  background: #232246;
+  color: white;
+
+  width: calc(100% - 30px);
+  min-width: calc(100% - 30px);
+
+  min-height: 350px;
+
+  cursor: pointer;
+transition: transform 0.2s ease;
+
+}
+@media (max-width: 768px) {
+  .pricing_people_tile {
+    width: calc(100% - 130px);
+    min-width: calc(100% - 130px);
+    min-height: 350px;
+  }
+}
+.pricing_people_tile:hover {
+  transform: translateY(-5px);
+}
+
+
+.pricing_people_tile_title {
+  font-size: 5rem;
+}
+
+.pricing_people_tile_sub_title {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.pricing_people_tile_sub_description {
+  font-size: 1rem;
+  font-weight: 100;
+}
+
+.pr_people_wrapper {
+  -webkit-mask-image: -webkit-linear-gradient(
+    0deg,
+    transparent,
+    #121212 50%,
+    #121212 50%,
+    transparent
+  );
+  mask-image: -webkit-linear-gradient(
+    0deg,
+    transparent,
+    #121212 50%,
+    #121212 50%,
+    transparent
+  );
+
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scroll-behavior: smooth;
+}
+
+.pr_control_icons {
+  font-size: 3rem;
+}
+

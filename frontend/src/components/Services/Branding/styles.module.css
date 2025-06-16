@@ -1,0 +1,31 @@
+.brading_title {
+  font-size: 4.5rem;
+}
+
+.brading_bg {
+  background: linear-gradient(180deg, #04041e05 5%, #232359 70%, #0000 100%);
+  /* padding-top: 5%; */
+  padding-bottom: 5%;
+}
+
+.branding_set_us_part_wrapper {
+  width: 75vw;
+}
+
+.image_container {
+  width: 25vw;
+}
+.hoverCard {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 0;
+  transition: all 0.4s ease-in-out;
+  cursor: pointer;
+  height: 100%;
+}
+
+.hoverCard:hover {
+  background: linear-gradient(135deg, rgba(255, 94, 247, 0.3), rgba(70, 170, 255, 0.3));
+  border-top-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  transform: translateX(10px);
+}
