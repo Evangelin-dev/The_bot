@@ -47,7 +47,7 @@ const LaunchingModal = () => {
           <div className={`modal-content ${styles.lanuching_modal_bg}`}>
             <div className="modal-header justify-content-between">
               <h5 className="modal-title" id="staticBackdropLabel">
-                LET'S GROW YOUR BRAND ONLINE !!
+                LETS GROW YOUR BRAND ONLINE !!
               </h5>
               <i
                 className="fa fa-times cursor-pointer"
