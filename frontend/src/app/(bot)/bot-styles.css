@@ -1,0 +1,17 @@
+@import "tailwindcss";
+.bot-body {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  font-family: var(--font-geist-sans) !important;
+  background-color: black;
+}
+.bot-wrapper {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-geist-sans); /* Or whatever font you use */
+  background-color: #000000; /* Or #0a0a0a, etc. */
+  width: 100%;
+  overflow-x: hidden; /* Prevents horizontal scrollbars */
+}

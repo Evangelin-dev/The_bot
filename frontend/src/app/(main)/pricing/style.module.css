@@ -1,0 +1,133 @@
+.pricing_page_wrapper {
+  /* background: linear-gradient(88deg, rgba(1, 1, 1, 1), rgba(1, 1, 1, 0)), */
+  /* linear-gradient(to bottom, #3500aa, #004a59, rgb(245, 55, 255), #160338), */
+  background: url("/darkest-galaxy.png") no-repeat right top #121212;
+  background-size: 100% auto;
+}
+
+.pricing_page_planet {
+  /* background: radial-gradient(60vh at 2% 46%, #5e99ff, #1b022e00); */
+}
+/* inear-gradient(
+    88deg,
+    #3500aa -11.16%,
+    #004a59 46.95%,
+    #160338 94.89%
+  ) */
+
+.pricing_container {
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.pricing_title {
+  font-size: 4rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.pricing_sub_title {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.subscription_container {
+  padding-top: 8%;
+  padding-bottom: 5%;
+}
+
+.plan_wrapper {
+  color: white;
+  margin: 0 auto;
+
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.plan_padding {
+  padding: 0 10%;
+  /* width: 90%; */
+}
+
+.plan_wrapper:hover {
+  cursor: pointer;
+  border: 2px solid rgba(255, 255, 255, 0.721);
+}
+
+.plan_type {
+  font-size: 0.9rem;
+}
+
+.plan_name {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.time_label {
+  color: #a1a1a9;
+  font-size: 1rem;
+}
+
+.plan_type_content {
+  border-color: #ffffff !important;
+}
+
+.plan_pricing {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.plan_per_hr {
+  font-size: 1rem;
+  color: #a1a1a9;
+}
+
+.price_bg_first {
+  background: radial-gradient(circle 30vh at 47% 3%, #2f2d9a, #0000);
+}
+
+.price_bg_second {
+  background: radial-gradient(20vh at 47% 3%, #b85aaa, #1b022e00);
+}
+
+.bg_gradient {
+  /* background: radial-gradient(circle 20vh at 47% 3%, #e3d6ff, #1b022e00); */
+}
+
+.pricing_services_wrapper_title {
+  font-size: 2rem;
+}
+
+.pricing_services_wrapper {
+  background: #44393940;
+}
+
+.pricing_services_title {
+  /* padding-top: 0.5rem; */
+}
+
+.pricing_services_description {
+  color: #a1a1a9;
+  font-size: 0.8rem;
+  padding-left: 2rem;
+  /* padding-bottom: 0.5rem; */
+
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+.flex_wrap {
+}
+
+@media (max-width: 768px) {
+  .pricing_title {
+    font-size: 2rem;
+  }
+  .pricing_sub_title {
+    width: 100%;
+  }
+  .flex_wrap {
+    flex-wrap: wrap;
+  }
+}

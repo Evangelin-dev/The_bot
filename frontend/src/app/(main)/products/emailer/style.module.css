@@ -1,0 +1,23 @@
+.product_title_container {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.product_title_img {
+  width: 90%;
+  padding: 2rem;
+}
+
+.product_pricing {
+  width: 33%;
+}
+
+.product_title {
+}
+
+@media only screen and (max-width: 768px) {
+  .product_title {
+    text-align: center;
+    font-weight: 600;
+  }
+}
