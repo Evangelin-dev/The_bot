@@ -4,7 +4,11 @@
 
 // import { useRef } from "react";
 // import Slider from "react-slick"; // Importing react-slick
-import Slider from "@/components/common/Slider"; // adjust path as needed
+import Slider from '../../common/Slider'; 
+// or
+import Slider from '../../Slider';
+// or
+import Slider from '@/components/Slider';
 const { default: PrCard } = require("@/components/Pricing/PrPeople/PrCard");
 
 const HowItWorks = ({ data = [], col = "col-md-3 col-12" }) => {
