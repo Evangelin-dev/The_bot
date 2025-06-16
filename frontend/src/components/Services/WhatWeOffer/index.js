@@ -4,7 +4,7 @@
 // import "slick-carousel/slick/slick-theme.css";
 
 // import Slider from "react-slick";
-import Slider from '../../common/Slider';
+import Slider from "react-slick";
 
 const { default: PrCard } = require("@/components/Pricing/PrPeople/PrCard");
 
