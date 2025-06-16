@@ -204,7 +204,7 @@ const WHY_CHOOSE_US = [
     name: (
       <span>
         <span className="fw-bolder pink_text">Proven Results: </span>
-        We've helped SaaS companies scale by identifying the right strategies
+        We have helped SaaS companies scale by identifying the right strategies
         for growth.{" "}
       </span>
     ),
@@ -266,7 +266,7 @@ const SaasCompanyPage = () => {
             At The Bot Agency, we specialize in creating customized strategies
             to help SaaS businesses thrive in competitive markets. From
             identifying product-market fit to driving leads through targeted
-            performance marketing, we're your trusted partner for sustainable
+            performance marketing, we are your trusted partner for sustainable
             growth.
           </div>
         }
@@ -276,11 +276,11 @@ const SaasCompanyPage = () => {
         clienTestimonialData={CLIENT_TESTIMONIAL}
         faqData={FAQ_DATA}
         whyChooseUs={WHY_CHOOSE_US}
-        bookConsultTitle="CTA: Let's Scale Your SaaS Business Together"
+        bookConsultTitle="CTA: Lets Scale Your SaaS Business Together"
         bookConsultDescription={
           <div>
             🚀 Ready to Transform Your SaaS Growth? Book a consultation today,
-            and let's craft a strategy that drives results for your business.
+            and lets craft a strategy that drives results for your business.
           </div>
         }
         serviceData={SERVICES_DATA}
