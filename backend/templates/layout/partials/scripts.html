@@ -1,0 +1,39 @@
+{% load static %}
+
+<!--Core Javascript-->
+<script src="{% static 'vendor/libs/jquery/jquery.js' %}"></script>
+<script src="{% static 'vendor/libs/popper/popper.js' %}"></script>
+<script src="{% static 'vendor/js/bootstrap.js' %}"></script>
+<script src="{% static 'vendor/libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+<script src="{% static 'vendor/js/menu.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/super-build/ckeditor.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+<script>
+    const resetUploadFile = (previewFile, dragZoneId, fileInputId) =>{
+        let previewFileEl = document.getElementById(previewFile)
+        previewFileEl.innerHTML = ""
+        previewFileEl.style.display = "none"
+
+        let dragZoneIdEl = document.getElementById(dragZoneId)
+        dragZoneIdEl.style.display = "block"
+
+        let fileInputEl = document.getElementById(fileInputId)
+        fileInputEl.value = null
+    }
+    const startLoad = () =>{
+        let loaderEl = document.getElementById("loading")
+        if(loaderEl.style.display === 'none'){
+            loaderEl.style.display = 'block'
+        }else{
+            loaderEl.style.display = 'none'
+        }
+    }
+    const showPassword = (eleId) =>{
+        let passEle = document.getElementById(eleId)
+        passEle.type = "text"
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+

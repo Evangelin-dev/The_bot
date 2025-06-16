@@ -1,0 +1,116 @@
+{% extends layout_path %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}Email Account - New{% endblock %}
+
+{% block vendor_css %}
+    {{ block.super }}
+{% endblock vendor_css %}
+
+{% block vendor_js %}
+    {{ block.super }}
+{% endblock vendor_js %}
+
+{% block page_js %}
+    {{ block.super }}
+{% endblock page_js %}
+
+{% block content %}
+    <div class="card">
+        <h5 class="card-header">New Email Account</h5>
+        <ul>
+            {% if errors %}
+                {% for error in errors %}
+                	<li class="text-danger">
+                        {{ error }}
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" value="{{ request.user.id }}" name="created_by">
+                <input type="hidden" name="client" value="{{ request.user.clients.first.id }}">
+                <div class="row">
+                    <div class="col-md-6 py-2">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name"
+                               placeholder="Please Enter Name"
+                               name="name"
+                        >
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label for="host" class="form-label">Host</label>
+                        <input type="text" class="form-control" id="host"
+                               placeholder="Please Enter Host"
+                               name="host"
+                               required
+                        >
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label for="port" class="form-label">Port</label>
+                        <input type="number" class="form-control" id="port"
+                               placeholder="Please Enter Port"
+                               name="port"
+                               required
+                        >
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label for="username" class="form-label">User Name</label>
+                        <input type="text" class="form-control" id="username"
+                               placeholder="Please Enter User Name"
+                               name="username"
+                               required
+                        >
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label for="sender_name" class="form-label">Sender Name</label>
+                        <input type="text" class="form-control" id="sender_name"
+                               placeholder="Please Enter Sender Name"
+                               name="sender_name"
+                               required
+                        >
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label for="sender" class="form-label">Sender</label>
+                        <input type="email" class="form-control" id="sender"
+                               placeholder="Please Enter Sender"
+                               name="sender"
+                               required
+                        >
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password"
+                               placeholder="Please Enter Password"
+                               name="password"
+                        >
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label for="connection_type" class="form-label">Connection Type</label>
+                        <select name="connection_type" id="connection_type" class="form-select" required>
+                            <option value="">Connection Type</option>
+                            <option value="TLS">TLS</option>
+                            <option value="SSL">{{ st.1 }}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12 d-flex card-header align-items-center justify-content-end flex-column flex-md-row gap-2">
+                        <a href="{% url 'leads' %}" class="btn btn-outline-primary">
+                            <span class="tf-icons bx bx-window-close bx-18px me-2"></span>Cancel
+                        </a>
+                        <button type="submit" class="btn btn-outline-primary">
+                            <span class="tf-icons bx bx-save bx-18px me-2"></span>Next
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+
+

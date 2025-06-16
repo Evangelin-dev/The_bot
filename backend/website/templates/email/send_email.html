@@ -1,0 +1,156 @@
+{% extends layout_path %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}Send Email{% endblock %}
+
+{% block vendor_css %}
+    {{ block.super }}
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
+    <link href="{% static 'dropzone.css' %}" rel="stylesheet">
+{% endblock vendor_css %}
+
+{% block vendor_js %}
+    {{ block.super }}
+{% endblock vendor_js %}
+
+{% block page_js %}
+    {{ block.super }}
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+    $('#summernote').summernote({
+    placeholder: '',
+    tabsize: 2,
+    name:'description',
+    height: 100,
+    toolbar: [
+                  ['style', ['style']],
+                  ['font', ['bold', 'underline', 'clear']],
+                  ['color', ['color']],
+                  ['para', ['ul', 'ol', 'paragraph']],
+                  ['table', ['table']],
+                  ['insert', ['link', 'picture', 'video']],
+                  ['view', ['fullscreen', 'codeview', 'help']]
+                ]
+              });
+        });
+    </script>
+    <script src="{% static 'dropzone.js' %}"></script>
+    <script src="{% static 'forms-file-upload.js' %}"></script>
+
+{% endblock page_js %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header d-flex flex-column flex-md-row align-items-center justify-content-between">
+            <div class="head-label text-center">
+                <h5 class="card-title mb-0">Compose Email</h5>
+            </div>
+        </div>
+        <div class="card-body">
+            <form method="post" onsubmit="startLoad()" action="{% url 'send_email' model=model pk=model_id %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" value="{{ request.user.id }}" name="created_by">
+                <input type="hidden" value="{{ model_id }}" name="model_id">
+                <input type="hidden" value="{{ model }}" name="model">
+                <div class='row'>
+                    <div class="col-md-12 py-3">
+                        <label for="emailAccounts" class="form-label">Select Email Account</label>
+                        <select name="email_account" id="emailAccounts" class="form-select" required>
+                            <option value="">Select Email Account</option>
+                            {% for email_account in email_accounts %}
+                            	<option value="{{ email_account.id }}">{{ email_account.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-12 py-2">
+                        <label for="email" class="form-label">Email</label>
+                        {% if email %}
+                            <input type="text" class="form-control" id="email"
+                                   placeholder="Please Enter Email"
+                                   name="email"
+                                   required
+                                   value="{{ email }}"
+                                   readonly
+                            >
+                        {% else %}
+                            <input type="text" class="form-control" id="email"
+                                   placeholder="Please Enter Email"
+                                   name="email"
+                                   required
+                            >
+                        {% endif %}
+                    </div>
+                    <div class="col-md-12 py-2">
+                        <label for="cc" class="form-label">CC</label>
+                        <input type="text" class="form-control" id="cc"
+                               placeholder="Please Enter CC Seperated by Comma"
+                               name="cc"
+                        >
+                    </div>
+                    <div class="col-md-12 py-2">
+                        <label for="bcc" class="form-label">BCC</label>
+                        <input type="text" class="form-control" id="bcc"
+                               placeholder="Please Enter BCC Seperated by Comma"
+                               name="bcc"
+                        >
+                    </div>
+                    <div class="col-md-12 py-2">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input type="text" class="form-control" id="subject"
+                               placeholder="Please Enter Subject"
+                               name="subject"
+                               required
+                        >
+                    </div>
+                    <div class="col-md-12 py-2">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea id="summernote" name="body"></textarea>
+                    </div>
+                    <div class="col-md-12 py-2">
+                        <label for="signature" class="form-label">Signature</label>
+                        <textarea class="form-control" id="signature"
+                               placeholder="Please Enter Signature"
+                               name="signature"
+                               required
+                               cols="4"
+                               rows="5"
+                        ></textarea>
+                    </div>
+                    <div class="col-md-12">
+                         <fieldset class="upload_dropZone text-center mb-3 p-4">
+                            <div id='upload-content'>
+                                <legend class="visually-hidden">Image uploader</legend>
+                                <p class="small my-2">Drag &amp; Drop attachments inside dashed
+                                    region<br><i>or</i>
+                                </p>
+                                <input id="upload_image_logo"
+                                       class="position-absolute" type="file"
+                                       name='file'
+                                       multiple
+                                       required
+                                       style='opacity: 0'
+                                >
+                                <label class="btn btn-upload mb-3" for="upload_image_logo">Choose file(s)</label>
+                                <div class="upload_gallery d-flex flex-wrap justify-content-center gap-3 mb-0"></div>
+                            </div>
+                        </fieldset>
+                        <div id='upload-description' class='py-5' style='display: none'>
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-flex align-items-center justify-content-end flex-column flex-md-row gap-2 py-2">
+                        <button type="button" class="btn btn-outline-primary" onclick="history.back()">
+                            <span class="tf-icons bx bx-window-close bx-18px me-2"></span>Cancel
+                        </button>
+                        <button type="submit" class="btn btn-outline-primary">
+                            <span class="tf-icons bx bx-send bx-18px me-2"></span>Send Email
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,77 @@
+{% extends layout_path %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}Create Email Template{% endblock %}
+
+{% block vendor_css %}
+    {{ block.super }}
+{% endblock vendor_css %}
+
+{% block vendor_js %}
+    {{ block.super }}
+{% endblock vendor_js %}
+
+{% block page_js %}
+    {{ block.super }}
+{% endblock page_js %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header d-flex flex-column flex-md-row align-items-center justify-content-between">
+            <div class="head-label text-center">
+                <h5 class="card-title mb-0">Edit Email Template</h5>
+            </div>
+        </div>
+        <div class="card-body">
+            <form onsubmit="startLoad()" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" value="{{ request.user.id }}" name="author">
+                <div class='row'>
+                    <div class="col-md-12 py-2">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name"
+                               placeholder="Please Enter Name"
+                               name="name"
+                               required
+                        >
+                    </div>
+                    <div class="col-md-12 py-2">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input type="text" class="form-control" id="subject"
+                               placeholder="Please Enter Subject"
+                               name="subject"
+                        >
+                    </div>
+                    <div class="col-md-12 py-2">
+                        <label for="content" class="form-label">Body</label>
+                        <textarea id="content" name="body"></textarea>
+                    </div>
+                    <div class="col-md-12 py-2">
+                        <label for="signature" class="form-label">Signature</label>
+                        <textarea class="form-control" id="signature"
+                                  placeholder="Please Enter Signature"
+                                  name="signature"
+                                  required
+                                  cols="4"
+                                  rows="5"
+                        ></textarea>
+                    </div>
+                    <div class="col-md-12 py-2">
+                        <label for="logoFile" class="form-label">Logo</label>
+                        <input class="form-control" name="logo" type="file" id="logoFile">
+                    </div>
+                    <div class="col-md-12 d-flex align-items-center justify-content-end flex-column flex-md-row gap-2 py-2">
+                        <button type="button" class="btn btn-outline-primary" onclick="history.back()">
+                            <span class="tf-icons bx bx-window-close bx-18px me-2"></span>Cancel
+                        </button>
+                        <button type="submit" class="btn btn-outline-primary">
+                            <span class="tf-icons bx bx-save bx-18px me-2"></span>Save
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

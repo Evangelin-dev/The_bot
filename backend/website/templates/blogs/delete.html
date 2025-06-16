@@ -1,0 +1,79 @@
+{% extends layout_path %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}Send Email{% endblock %}
+
+{% block vendor_css %}
+    {{ block.super }}
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
+    <link href="{% static 'dropzone.css' %}" rel="stylesheet">
+{% endblock vendor_css %}
+
+{% block vendor_js %}
+    {{ block.super }}
+{% endblock vendor_js %}
+
+{% block page_js %}
+    {{ block.super }}
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+    $('#content').summernote({
+    placeholder: '',
+    tabsize: 2,
+    name:'description',
+    height: 100,
+    toolbar: [
+                  ['style', ['style']],
+                  ['font', ['bold', 'underline', 'clear']],
+                  ['color', ['color']],
+                  ['para', ['ul', 'ol', 'paragraph']],
+                  ['table', ['table']],
+                  ['insert', ['link', 'picture', 'video']],
+                  ['view', ['fullscreen', 'codeview', 'help']]
+                ]
+              });
+        });
+    </script>
+    <script src="{% static 'dropzone.js' %}"></script>
+    <script src="{% static 'forms-file-upload.js' %}"></script>
+
+{% endblock page_js %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header d-flex flex-column flex-md-row align-items-center justify-content-between">
+            <div class="head-label text-center">
+                <h5 class="card-title mb-0">Delete {{ data.type }}</h5>
+            </div>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" value="{{ request.user.id }}" name="author">
+                <div class='row'>
+                    <div class="col-md-12 py-2">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title"
+                               placeholder="Please Enter Title"
+                               name="title"
+                               required
+                               value="{{ data.title }}"
+                               readonly
+                        >
+                    </div>
+                    <div class="col-md-12 d-flex align-items-center justify-content-end flex-column flex-md-row gap-2 py-2">
+                        <button type="button" class="btn btn-outline-primary" onclick="history.back()">
+                            <span class="tf-icons bx bx-window-close bx-18px me-2"></span>Cancel
+                        </button>
+                        <button type="submit" class="btn btn-outline-danger">
+                            <span class="tf-icons bx bx-trash-alt bx-18px me-2 text-danger"></span>Are You sure want to delete ?
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

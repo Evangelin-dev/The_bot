@@ -1,0 +1,251 @@
+{% extends layout_path %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ data.customer.name }} - {{ data.date }}{% endblock %}
+
+{% block vendor_css %}
+    {{ block.super }}
+    <style>
+        td, th {
+            padding: 0.5rem 0.6rem !important
+        }
+        .table{
+            border-color: black;
+        }
+        .table>:not(caption)>*>*{
+            color: black;
+        }
+        @media print {
+          table {
+            break-inside: avoid;
+          }
+        }
+    </style>
+{% endblock vendor_css %}
+
+{% block vendor_js %}
+    {{ block.super }}
+{% endblock vendor_js %}
+
+{% block page_js %}
+    {{ block.super }}
+{% endblock page_js %}
+
+{% block content %}
+    <div class="px-5 py-3" style="font-size: 12px; background: white">
+
+        <table class="table table-bordered" style="width: 100%">
+            <tbody>
+                <tr>
+                    <td style="width: 20%;">
+                        <img style="width: 100%;" src="{{ data.company.logo.url }}">
+                    </td>
+                    <td style="width: 80%" class="text-center">
+                        <div class="fw-bolder fs-3">{{ data.company.name }}</div>
+                        <div class="fw-lighter fs-6">{{ data.company.address }}
+                        </div>
+                        <div class="fw-lighter">
+                            <ul class="d-flex align-items-center justify-content-center gap-6 mb-0">
+                                <li><b>Phone No :</b> {{ data.company.phone }}</li>
+                                <li><b>Mob. :</b> {{ data.company.phone }}</li>
+                                <li><b>Email Id : </b> {{ data.company.email }}</li>
+                                <li><b>Website : </b> {{ data.company.website }}</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <b>GSTIN :</b> {{ data.company.gst_no }}
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-bordered" style="width: 100%">
+            <tbody>
+                <tr class="text-center fw-bolder fs-4">
+                    <td colspan="2">
+                        Quotation
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span><b>Quotation No. </b>: {{ data.quotation_no }} </span> <br>
+                        <span><b>Date. </b>: {{ data.date }}</span> <br>
+
+                    </td>
+                    <td>
+                        <span><b>Approved By </b> : {{ data.approver.full_name }} </span> <br>
+                        <span><b>Approved Date. </b>: {{ data.approved_date }}</span> <br>
+                        <span><b>Prepared By </b>: {{ data.created_by.full_name }}</span> <br>
+                    </td>
+                </tr>
+                <tr class="fw-bolder">
+                    <td>
+                        Details of Receiver / Billing Address
+                    </td>
+                    <td>
+                        Details of Consignee /Shipping Address
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 50%">
+                        <b>{{ data.billing_address.name }}</b><br>
+                        <b>{{ data.billing_address.address }}</b><br>
+                        <b>Tel. </b>: {{ data.billing_address.phone }}<br>
+                        <b>E-mail. </b>: {{ data.billing_address.email }}<br>
+                        <b>GSTIN </b>: {{ data.billing_address.gst_no }} <br>
+                        <b>State </b>: {{ data.billing_address.state }} <br>
+                        <b>Country </b>: {{ data.billing_address.country }} <br>
+                    </td>
+                    <td style="width: 50%">
+                        <b>{{ data.shipping_address.name }}</b><br>
+                        <b>{{ data.shipping_address.address }}</b><br>
+                        <b>Tel. </b>: {{ data.shipping_address.phone }}<br>
+                        <b>E-mail. </b>: {{ data.shipping_address.email }}<br>
+                        <b>GSTIN </b>: {{ data.shipping_address.gst_no }} <br>
+                        <b>State </b>: {{ data.shipping_address.state }} <br>
+                        <b>Country </b>: {{ data.shipping_address.country }} <br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-bordered" style="width: 100%">
+            <thead>
+                <tr class="fw-bolder">
+                    <th width="10%">
+                        Sr. No
+                    </th>
+                    <th width="50%">
+                        Description of Goods
+                    </th>
+                    <th width="10%">
+                        HSN/SAC
+                    </th>
+                    <th width="10%">
+                        QTY
+                    </th>
+                    <th width="10%">
+                        Discount
+                    </th>
+                    <th width="10%">
+                        Rate
+                    </th>
+                    <th width="10%">
+                        Sub Total
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data.quotation_item_fk.all %}
+                	<tr>
+                        <td>
+                            {{ forloop.counter }}.
+                        </td>
+                        <td>
+                            <b>{{ item.item.name }} </b><br>
+                            ({{ item.item.description }})
+                        </td>
+                        <td>
+                            {{ item.item.hsn_code|default_if_none:"-" }}
+                        </td>
+                        <td>
+                            {{ item.qty }}
+                        </td>
+                        <td>
+                            {{ item.discount_per }} %
+                        </td>
+                        <td>
+                            {{ item.price_in_rs|floatformat:2 }}
+                        </td>
+                        <td class="text-end">
+                            {{ item.net_amount|floatformat:2 }}
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                <tr>
+                    <td colspan="6" class="text-end fw-bolder">
+                        Total
+                    </td>
+                    <td class="text-end">
+                        {{ data.total_amount|floatformat:2 }}
+                    </td>
+                </tr>
+                {% if data.is_taxable and data.customer.shipping_address.state == data.company.state and data.customer.currency == 'INR' %}
+                    <tr>
+                        <td class="text-end fw-bolder" colspan="6" style="border-top-color: transparent; border-bottom-color: transparent">
+                            SGST ({{ data.tax_data.sgst.per }}%)
+                        </td>
+                        <td class="text-end" colspan="1">
+                            {{ data.tax_data.sgst.tax_amount|floatformat:2 }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-end fw-bolder" colspan="6" style="border-top-color: transparent; border-bottom-color: transparent">
+                            CGST ({{ data.tax_data.cgst.per }}%)
+                        </td>
+                        <td class="text-end" colspan="1">
+                            {{ data.tax_data.cgst.tax_amount|floatformat:2 }}
+                        </td>
+                    </tr>
+                {% endif %}
+                {% if data.is_taxable and data.customer.shipping_address.state != data.company.state and data.customer.currency == 'INR' %}
+                    <tr>
+                        <td class="text-end fw-bolder" colspan="6" style="border-top-color: transparent; border-bottom-color: transparent">
+                            IGST ({{ data.tax_data.igst.per }}%)
+                        </td>
+                        <td class="text-end" colspan="1">
+                            {{ data.tax_data.igst.tax_amount|floatformat:2 }}
+                        </td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <td class="text-end fw-bolder" colspan="6" style="border-top-color: transparent; border-bottom-color: transparent">
+                        Grand Total
+                    </td>
+                    <td class="text-end" colspan="1">
+                        {{ data.net_amount|floatformat:2 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="7">
+                        Amount in words :- <span class="text-capitalize fw-bolder">{{ amount_in_words}} Only</span>
+                        <span style="float: right"> Currency :- <b>{{ data.customer.currency }}</b></span>
+                    </td>
+                </tr>
+                <tr class="fs-6">
+                    <th style="font-size: 12px;" rowspan="3" colspan="2">
+                        <div class="py-1">
+                            Bank Detail :
+                        </div>
+                        <div class="fw-lighter" style="font-size: 10px">
+                            Bank Name : {{ data.bank_details.bank_name }} <br>
+                            A/c Number : {{ data.bank_details.account_number }} <br>
+                            Account Name : {{ data.bank_details.account_name }} <br>
+                            IFSC Code : {{ data.bank_details.ifsc }} <br>
+                            Swift Code : {{ data.bank_details.swift_code }} <br>
+                            Branch : {{ data.bank_details.branch }} <br>
+                            Address : {{ data.bank_details.address }} <br>
+                        </div>
+                        <div class="py-1 fw-light" style="font-size: 9px">
+                            {{ data.terms_and_condition.description|safe }}
+                        </div>
+                    </th>
+                    <td colspan="5">Certified that the particulars given above are true and correct</td>
+                </tr>
+                <tr>
+                    <td class="text-end" colspan="5">
+                        <b>For M/s. {{ data.company.name }},</b><br><br><br><br><br>
+                        <b>Authorized Signatory</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="7" class="text-center">
+                        This is computer generated signature is not required
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends layout_path %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}Email Campaign - New{% endblock %}
+
+{% block vendor_css %}
+    {{ block.super }}
+{% endblock vendor_css %}
+
+{% block vendor_js %}
+    {{ block.super }}
+{% endblock vendor_js %}
+
+{% block page_js %}
+    {{ block.super }}
+{% endblock page_js %}
+
+{% block content %}
+    <div class="card">
+        <h5 class="card-header">New Campaign</h5>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="campaignName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="campaignName"
+                               placeholder="Please Enter Campaign Name"
+                               aria-describedby="campaignNameHelp"
+                               name="name"
+                        required>
+                        <div id="campaignNameHelp" class="form-text">We'll never share your details with anyone
+                            else.
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="selectTemplate" class="form-label">Select Template</label>
+                        <select name="email_template" id="selectTemplate" class="form-select" required>
+                            <option value="">Select Template</option>
+                            {% for template in templates %}
+                            	<option value="{{ template.id }}">{{ template.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-6 py-3">
+                        <label for="emailAccounts" class="form-label">Select Email Account</label>
+                        <select name="email_account" id="emailAccounts" class="form-select" required>
+                            <option value="">Select Email Account</option>
+                            {% for email_account in email_accounts %}
+                            	<option value="{{ email_account.id }}">{{ email_account.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-12 d-flex card-header align-items-center justify-content-end flex-column flex-md-row gap-2">
+                        <button type="button" class="btn btn-outline-primary">
+                            <span class="tf-icons bx bx-window-close bx-18px me-2"></span>Cancel
+                        </button>
+                        <button type="submit" class="btn btn-outline-primary">
+                            <span class="tf-icons bx bx-save bx-18px me-2"></span>Next
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+
+

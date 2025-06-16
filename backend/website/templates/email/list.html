@@ -1,0 +1,68 @@
+{% extends layout_path %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}Email - List{% endblock %}
+
+{% block vendor_css %}
+    {{ block.super }}
+{% endblock vendor_css %}
+
+{% block vendor_js %}
+    {{ block.super }}
+{% endblock vendor_js %}
+
+{% block page_js %}
+    {{ block.super }}
+{% endblock page_js %}
+
+{% block content %}
+    <div class="card">
+        <div class="d-flex card-header align-items-center justify-content-between flex-column flex-md-row">
+            <div>Email List</div>
+            <a href="{% url 'send_email' model='new' pk='new' %}" class="btn btn-outline-primary">
+                <span class="tf-icons bx bx-plus bx-18px me-2"></span>Send Email
+              </a>
+        </div>
+        <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    {% if list %}
+                        {% for datum in list %}
+                            <tr>
+                                <td>{{ datum.email }}</td>
+                                <td>{{ datum.created_at }}</td>
+                                <td><span class="badge bg-label-primary me-1">{{ datum.status }}</span></td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                            <i class="bx bx-dots-vertical-rounded"></i></button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="{% url 'email_detail' pk=datum.id %}"><i class="bx bx-edit-alt me-1"></i>
+                                                Detail
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td>No Content</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+        {% include "layout/partials/pagination.html" %}
+    </div>
+{% endblock %}

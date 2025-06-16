@@ -9,7 +9,7 @@ const AnimatedBtn = ({
 }) => {
   return (
     <span
-      class={`${style.playbtn}`}
+      className={`${style.playbtn}`}
       onClick={() => {
         onClick();
       }}

@@ -1,0 +1,323 @@
+{% extends layout_path %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}Send Email{% endblock %}
+
+{% block vendor_css %}
+    {{ block.super }}
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
+{% endblock vendor_css %}
+
+{% block vendor_js %}
+    {{ block.super }}
+{% endblock vendor_js %}
+
+{% block page_js %}
+    {{ block.super }}
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/super-build/ckeditor.js"></script>
+    <script type="text/javascript">
+
+        CKEDITOR.ClassicEditor.create(document.getElementById("content"), {
+            toolbar: {
+                items: [
+                    'heading', '|',
+                    'bold', 'italic', 'strikethrough', 'underline', 'code', 'subscript', 'superscript', 'removeFormat', '|',
+                    'bulletedList', 'numberedList', 'todoList', '|',
+                    'outdent', 'indent', '|',
+                    'undo', 'redo',
+                    '-',
+                    'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'highlight', '|',
+                    'alignment', 'insertImage', 'toggleImageCaption', 'imageTextAlternative', 'ckboxImageEdit', '|',
+                    'link', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', 'htmlEmbed', '|',
+                    'specialCharacters', 'horizontalLine', 'pageBreak', '|',
+                    'textPartLanguage', '|',
+                    'sourceEditing'
+                ],
+                shouldNotGroupWhenFull: true
+            },
+            list: {
+                properties: {
+                    styles: true,
+                    startIndex: true,
+                    reversed: true
+                }
+            },
+            heading: {
+                options: [
+                    {model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph'},
+                    {model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1'},
+                    {model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2'},
+                    {model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3'},
+                    {model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4'},
+                    {model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5'},
+                    {model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6'}
+                ]
+            },
+            placeholder: 'Please Enter Body',
+            fontFamily: {
+                options: [
+                    'default',
+                    'Arial, Helvetica, sans-serif',
+                    'Courier New, Courier, monospace',
+                    'Georgia, serif',
+                    'Lucida Sans Unicode, Lucida Grande, sans-serif',
+                    'Tahoma, Geneva, sans-serif',
+                    'Times New Roman, Times, serif',
+                    'Trebuchet MS, Helvetica, sans-serif',
+                    'Verdana, Geneva, sans-serif'
+                ],
+                supportAllValues: true
+            },
+            fontSize: {
+                options: [10, 12, 14, 'default', 18, 20, 22],
+                supportAllValues: true
+            },
+            htmlSupport: {
+                allow: [
+                    {
+                        name: /.*/,
+                        attributes: true,
+                        classes: true,
+                        styles: true
+                    }
+                ]
+            },
+            htmlEmbed: {
+                showPreviews: true
+            },
+            link: {
+                decorators: {
+                    addTargetToExternalLinks: true,
+                    defaultProtocol: 'https://',
+                    toggleDownloadable: {
+                        mode: 'manual',
+                        label: 'Downloadable',
+                        attributes: {
+                            download: 'file'
+                        }
+                    }
+                }
+            },
+            mention: {
+                feeds: [
+                    {
+                        marker: '@',
+                        feed: [
+                            '@apple', '@bears', '@brownie', '@cake', '@cake', '@candy', '@canes', '@chocolate', '@cookie', '@cotton', '@cream',
+                            '@cupcake', '@danish', '@donut', '@dragée', '@fruitcake', '@gingerbread', '@gummi', '@ice', '@jelly-o',
+                            '@liquorice', '@macaroon', '@marzipan', '@oat', '@pie', '@plum', '@pudding', '@sesame', '@snaps', '@soufflé',
+                            '@sugar', '@sweet', '@topping', '@wafer'
+                        ],
+                        minimumCharacters: 1
+                    }
+                ]
+            },
+            removePlugins: [
+                'AIAssistant',
+                'CKBox',
+                'CKFinder',
+                'EasyImage',
+                'RealTimeCollaborativeComments',
+                'RealTimeCollaborativeTrackChanges',
+                'RealTimeCollaborativeRevisionHistory',
+                'PresenceList',
+                'Comments',
+                'TrackChanges',
+                'TrackChangesData',
+                'RevisionHistory',
+                'Pagination',
+                'WProofreader',
+                'MathType',
+                'SlashCommand',
+                'Template',
+                'DocumentOutline',
+                'FormatPainter',
+                'TableOfContents',
+                'PasteFromOfficeEnhanced'
+            ]
+        });
+
+        CKEDITOR.ClassicEditor.create(document.getElementById("signature"), {
+            toolbar: {
+                items: [
+                    'heading', '|',
+                    'bold', 'italic', 'strikethrough', 'underline', 'code', 'subscript', 'superscript', 'removeFormat', '|',
+                    'bulletedList', 'numberedList', 'todoList', '|',
+                    'outdent', 'indent', '|',
+                    'undo', 'redo',
+                    '-',
+                    'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'highlight', '|',
+                    'alignment', 'insertImage', 'toggleImageCaption', 'imageTextAlternative', 'ckboxImageEdit', '|',
+                    'link', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', 'htmlEmbed', '|',
+                    'specialCharacters', 'horizontalLine', 'pageBreak', '|',
+                    'textPartLanguage', '|',
+                    'sourceEditing'
+                ],
+                shouldNotGroupWhenFull: true
+            },
+            list: {
+                properties: {
+                    styles: true,
+                    startIndex: true,
+                    reversed: true
+                }
+            },
+            heading: {
+                options: [
+                    {model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph'},
+                    {model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1'},
+                    {model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2'},
+                    {model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3'},
+                    {model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4'},
+                    {model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5'},
+                    {model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6'}
+                ]
+            },
+            placeholder: 'Please Enter Body',
+            fontFamily: {
+                options: [
+                    'default',
+                    'Arial, Helvetica, sans-serif',
+                    'Courier New, Courier, monospace',
+                    'Georgia, serif',
+                    'Lucida Sans Unicode, Lucida Grande, sans-serif',
+                    'Tahoma, Geneva, sans-serif',
+                    'Times New Roman, Times, serif',
+                    'Trebuchet MS, Helvetica, sans-serif',
+                    'Verdana, Geneva, sans-serif'
+                ],
+                supportAllValues: true
+            },
+            fontSize: {
+                options: [10, 12, 14, 'default', 18, 20, 22],
+                supportAllValues: true
+            },
+            htmlSupport: {
+                allow: [
+                    {
+                        name: /.*/,
+                        attributes: true,
+                        classes: true,
+                        styles: true
+                    }
+                ]
+            },
+            htmlEmbed: {
+                showPreviews: true
+            },
+            link: {
+                decorators: {
+                    addTargetToExternalLinks: true,
+                    defaultProtocol: 'https://',
+                    toggleDownloadable: {
+                        mode: 'manual',
+                        label: 'Downloadable',
+                        attributes: {
+                            download: 'file'
+                        }
+                    }
+                }
+            },
+            mention: {
+                feeds: [
+                    {
+                        marker: '@',
+                        feed: [
+                            '@apple', '@bears', '@brownie', '@cake', '@cake', '@candy', '@canes', '@chocolate', '@cookie', '@cotton', '@cream',
+                            '@cupcake', '@danish', '@donut', '@dragée', '@fruitcake', '@gingerbread', '@gummi', '@ice', '@jelly-o',
+                            '@liquorice', '@macaroon', '@marzipan', '@oat', '@pie', '@plum', '@pudding', '@sesame', '@snaps', '@soufflé',
+                            '@sugar', '@sweet', '@topping', '@wafer'
+                        ],
+                        minimumCharacters: 1
+                    }
+                ]
+            },
+            removePlugins: [
+                'AIAssistant',
+                'CKBox',
+                'CKFinder',
+                'EasyImage',
+                'RealTimeCollaborativeComments',
+                'RealTimeCollaborativeTrackChanges',
+                'RealTimeCollaborativeRevisionHistory',
+                'PresenceList',
+                'Comments',
+                'TrackChanges',
+                'TrackChangesData',
+                'RevisionHistory',
+                'Pagination',
+                'WProofreader',
+                'MathType',
+                'SlashCommand',
+                'Template',
+                'DocumentOutline',
+                'FormatPainter',
+                'TableOfContents',
+                'PasteFromOfficeEnhanced'
+            ]
+        });
+    </script>
+{% endblock page_js %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header d-flex flex-column flex-md-row align-items-center justify-content-between">
+            <div class="head-label text-center">
+                <h5 class="card-title mb-0">Edit Email Template</h5>
+            </div>
+        </div>
+        <div class="card-body">
+            <form onsubmit="startLoad()" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" value="{{ request.user.id }}" name="author">
+                <div class='row'>
+                    <div class="col-md-12 py-2">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name"
+                               placeholder="Please Enter Name"
+                               name="name"
+                               required
+                               value="{{ data.name }}"
+                        >
+                    </div>
+                    <div class="col-md-12 py-2">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input type="text" class="form-control" id="subject"
+                               placeholder="Please Enter Subject"
+                               name="subject"
+                               value="{{ data.subject }}"
+                        >
+                    </div>
+                    <div class="col-md-12 py-2">
+                        <label for="content" class="form-label">Body</label>
+                        <textarea id="content" name="body">{{ data.body }}</textarea>
+                    </div>
+                    <div class="col-md-12 py-2">
+                        <label for="signature" class="form-label">Signature</label>
+                        <textarea class="form-control" id="signature"
+                                  placeholder="Please Enter Signature"
+                                  name="signature"
+                                  required
+                                  cols="4"
+                                  rows="5"
+                        >{{ data.signature }}</textarea>
+                    </div>
+                    <div class="col-md-12 py-2">
+                        <label for="logoFile" class="form-label">Logo</label>
+                        <input class="form-control" name="logo" type="file" id="logoFile">
+                    </div>
+                    <div class="col-md-12 d-flex align-items-center justify-content-end flex-column flex-md-row gap-2 py-2">
+                        <button type="button" class="btn btn-outline-primary" onclick="history.back()">
+                            <span class="tf-icons bx bx-window-close bx-18px me-2"></span>Cancel
+                        </button>
+                        <button type="submit" class="btn btn-outline-primary">
+                            <span class="tf-icons bx bx-save bx-18px me-2"></span>Save
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

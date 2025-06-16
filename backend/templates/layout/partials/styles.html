@@ -1,0 +1,51 @@
+{% load static %}
+
+<!--Fonts-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+<!-- Icons -->
+<link rel="stylesheet" href="{% static 'vendor/fonts/boxicons.css' %}" />
+
+<!--Core CSS -->
+<link rel="stylesheet" href="{% static 'vendor/css/core.css' %}" />
+<link rel="stylesheet" href="{% static 'vendor/css/theme-default.css' %}" />
+
+
+<link rel="stylesheet" href="{% static 'css/demo.css' %}" />
+
+<!--Vendor CSS-->
+<link rel="stylesheet" href="{% static 'vendor/libs/perfect-scrollbar/perfect-scrollbar.css' %}" />
+{#<link rel="stylesheet" href="{% static 'vendor/libs/flatpickr/flatpickr.css' %}" />#}
+{#<link rel="stylesheet" href="{% static 'vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css' %}" />#}
+
+
+<style>
+    .overlay {
+      {#position: absolute;#}
+      top: 50%;
+      left: 50%;
+      opacity: 0.5;
+      transform: translate(-50%, -50%);
+        --bs-backdrop-zindex: 1089;
+    --bs-backdrop-bg: #22303e;
+    --bs-backdrop-opacity: 0.5;
+    position: fixed;
+    z-index: var(--bs-backdrop-zindex);
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bs-backdrop-bg);
+    }
+    .select2-container{
+        width: 100% !important;
+    }
+    .select2-container--default .select2-selection--single{
+        padding: 0.3rem !important;
+        height: auto !important;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__arrow{
+        padding: 1.2rem !important;
+    }
+</style>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />

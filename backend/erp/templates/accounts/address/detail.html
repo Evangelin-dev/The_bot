@@ -1,0 +1,117 @@
+{% extends layout_path %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}Edit Address{% endblock %}
+
+{% block vendor_css %}
+    {{ block.super }}
+{% endblock vendor_css %}
+
+{% block vendor_js %}
+    {{ block.super }}
+{% endblock vendor_js %}
+
+{% block page_js %}
+    {{ block.super }}
+{% endblock page_js %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header d-flex flex-column flex-md-row align-items-center justify-content-between">
+            <div class="head-label text-center">
+                <h5 class="card-title mb-0">Edit Address</h5>
+            </div>
+        </div>
+        <div class="card-body">
+            {% if errors %}
+                <ul>
+                    {% for error in errors %}
+                        <li class="text-danger">
+                            {{ error }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <form onsubmit="startLoad()" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" value="{{ request.user.id }}" name="created_by">
+                <input type="hidden" value="{{ request.user.id }}" name="updated_by">
+                <div class='row'>
+                    <div class="col-md-12 py-2">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name"
+                               placeholder="Please Enter Name"
+                               name="name"
+                               required
+                               value="{{ data.name }}"
+                        >
+                    </div>
+                    <div class="col-md-12 py-2">
+                        <label for="address" class="form-label">Address</label>
+                        <textarea id="address" class="form-control" name="address">{{ data.address }}</textarea>
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="number" id="phone" class="form-control" name="phone" required
+                               placeholder="Please Enter Name" value="{{ data.phone }}">
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" class="form-control" name="email"
+                               placeholder="Please Enter Email" value="{{ data.email }}">
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label for="address_type" class="form-label">Address Type</label>
+                        <select name="address_type" id="address_type" class="form-select" required>
+                            {% for add_type in address_type %}
+                                {% if data.address_type == add_type.0 %}
+                            	    <option value="{{ add_type.0 }}" selected>{{ add_type.1 }}</option>
+                                {% else %}
+                            	    <option value="{{ add_type.0 }}">{{ add_type.1 }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label for="state" class="form-label">State</label>
+                        <input type="text" id="state" class="form-control" name="state" required
+                               placeholder="Please Enter State" value="{{ data.state }}">
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label for="country" class="form-label">Country</label>
+                        <input type="text" id="country" class="form-control" name="country" required
+                               placeholder="Please Enter Country" value="{{ data.country }}">
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label for="gst_no" class="form-label">Gst No</label>
+                        <input type="text" id="gst_no" class="form-control" name="gst_no" required
+                               placeholder="Please Enter Gst No" value="{{ data.gst_no }}">
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label for="company" class="form-label">Company</label>
+                        <select name="company" id="company" class="form-select" required>
+                            <option value="">Select Company</option>
+                            {% for company in companies %}
+                                {% if data.company.id == company.id %}
+                            	    <option value="{{ company.id }}" selected>{{ company.name }}</option>
+                                {% else %}
+                            	    <option value="{{ company.id }}">{{ company.name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-12 d-flex align-items-center justify-content-end flex-column flex-md-row gap-2 py-2">
+                        <button type="button" class="btn btn-outline-primary" onclick="history.back()">
+                            <span class="tf-icons bx bx-window-close bx-18px me-2"></span>Cancel
+                        </button>
+                        <button type="submit" class="btn btn-outline-primary">
+                            <span class="tf-icons bx bx-save bx-18px me-2"></span>Save
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

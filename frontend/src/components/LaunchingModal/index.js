@@ -71,6 +71,11 @@ const LaunchingModal = () => {
                   </div>
                 </div>
               </div>
+              <div className="fs-1 text-success p-3">
+                <span className="step">
+                  <i className="fa fa-check" aria-hidden="true"></i>
+                </span>
+              </div>
             </div>
           </div>
         </div>

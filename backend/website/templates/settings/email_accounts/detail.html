@@ -1,0 +1,182 @@
+{% extends layout_path %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}Email Account - Update{% endblock %}
+
+{% block vendor_css %}
+    {{ block.super }}
+{% endblock vendor_css %}
+
+{% block vendor_js %}
+    {{ block.super }}
+{% endblock vendor_js %}
+
+{% block page_js %}
+    {{ block.super }}
+{% endblock page_js %}
+
+{% block content %}
+    <div class="card">
+        <h5 class="card-header">
+            Configure Email Account
+        </h5>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" value="{{ request.user.id }}" name="created_by">
+                <input type="hidden" name="client" value="{{ request.user.clients.first.id }}">
+                <div class="row">
+                    <div class="col-md-6 py-2">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name"
+                               placeholder="Please Enter Name"
+                               name="name"
+                               value="{{ data.name }}"
+                        >
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label for="host" class="form-label">Host</label>
+                        <input type="text" class="form-control" id="host"
+                               placeholder="Please Enter Host"
+                               name="host"
+                               required
+                               value="{{ data.host }}"
+                        >
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label for="port" class="form-label">Port</label>
+                        <input type="number" class="form-control" id="port"
+                               placeholder="Please Enter Port"
+                               name="port"
+                               required
+                               value="{{ data.port }}"
+                        >
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label for="username" class="form-label">User Name</label>
+                        <input type="text" class="form-control" id="username"
+                               placeholder="Please Enter User Name"
+                               name="username"
+                               required
+                               value="{{ data.username }}"
+                        >
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label for="sender_name" class="form-label">Sender Name</label>
+                        <input type="text" class="form-control" id="sender_name"
+                               placeholder="Please Enter Sender Name"
+                               name="sender_name"
+                               required
+                               value="{{ data.sender_name }}"
+                        >
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label for="sender" class="form-label">Sender</label>
+                        <input type="email" class="form-control" id="sender"
+                               placeholder="Please Enter Sender"
+                               name="sender"
+                               required
+                               value="{{ data.sender }}"
+                        >
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label for="password" class="form-label">
+                            Password
+                            <span class="tf-icons bx bx-show bx-18px" onclick="showPassword('password')"></span></label>
+                        <input type="password" class="form-control" id="password"
+                               placeholder="Please Enter Password"
+                               name="password"
+                               value="{{ data.password }}"
+                        >
+
+                    </div>
+
+                <div class="col-md-6 py-2">
+                        <label for="connection_type" class="form-label">Connection Type</label>
+                        <select name="connection_type" id="connection_type" class="form-select" required>
+                            <option value="">Connection Type</option>
+                            {% if data.connection_type == "TLS" %}
+                                <option value="TLS" selected>TLS</option>
+                                <option value="SSL">SSL</option>
+                            {% else %}
+                                <option value="SSL" selected>SSL</option>
+                                <option value="TLS">TLS</option>
+                            {% endif %}
+                        </select>
+                    </div>
+
+                    <div class="col-md-12 d-flex card-header align-items-center justify-content-between flex-column flex-md-row gap-2">
+                        <div class="w-50">
+                            {% if data.status %}
+                                <div class="col-md-6 py-2 text-success">
+                                    SMTP Connection Successfully Initiated <br> {{ data.meta_data.success }}
+                                </div>
+                            {% else %}
+                                <div class="col-md-6 py-2 text-danger">
+                                    Error while SMTP Connection <br> {{ data.meta_data.error }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="w-50 d-flex justify-content-end gap-2">
+                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#sendTestEmail">
+                                <span class="tf-icons bx bx-mail-send bx-18px me-2"></span>Send Test Email
+                            </button>
+                            {% if not is_success %}
+                                <a href="{% url 'email_account_details' pk=data.id %}?test_connection=true" class="btn btn-outline-primary">
+                                    <span class="tf-icons bx bx-test-tube bx-18px me-2"></span>Test Connection
+                                </a>
+                            {% endif %}
+                            <a href="{% url 'email_account_list' %}" class="btn btn-outline-primary">
+                                <span class="tf-icons bx bx-window-close bx-18px me-2"></span>Cancel
+                            </a>
+                            <button type="submit" class="btn btn-outline-primary">
+                                <span class="tf-icons bx bx-save bx-18px me-2"></span>Next
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="sendTestEmail" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1"
+     aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form method="post" onsubmit="startLoad()" action="{% url 'send_test_email' %}">
+                    <div class='row'>
+                        <div class='col-12 fs-5 fw-bolder py-3'>
+                            Send Test Email
+                        </div>
+                        <input type="hidden" value="{{ data.id }}" name="email_account">
+                        {% csrf_token %}
+                        <div class="col-md-12 py-2">
+                            <label for="recipient" class="form-label">Recipient</label>
+                            <input type="email" class="form-control" id="recipient"
+                                   placeholder="Please Enter Email"
+                                   name="recipient"
+                                   required
+                            >
+                        </div>
+                        <div class="col-md-12 d-flex align-items-center justify-content-end flex-column flex-md-row gap-2 py-2">
+                            <button type="button" data-bs-dismiss="modal" class="btn btn-outline-primary">
+                                <span class="tf-icons bx bx-window-close bx-18px me-2"></span>Cancel
+                            </button>
+                            <button type="submit" class="btn btn-outline-primary" data-bs-dismiss="modal">
+                                <span class="tf-icons bx bx-mail-send bx-18px me-2"></span>Send
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+

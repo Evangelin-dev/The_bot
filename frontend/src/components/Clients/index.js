@@ -58,7 +58,7 @@ const Clients = () => {
         <div className={`d-flex ${styles.track}`}>
           {CLIENT_LOGO?.map((client, clientIdx) => {
             return (
-              <div className={styles.client_logo_wrapper}>
+              <div key={`client-wrapper-${clientIdx}`} className={styles.client_logo_wrapper}>
                 <CustomImage
                   src={client}
                   key={`client-img-${clientIdx}`}
@@ -74,12 +74,12 @@ const Clients = () => {
         className={`text-center ${styles.services_control_icons} text-white`}
       >
         <i
-          class="fa fa-chevron-circle-left px-2 cursor-pointer"
+          className="fa fa-chevron-circle-left px-2 cursor-pointer"
           aria-hidden="true"
           onClick={() => scrollBannerServices(-100)}
         ></i>
         <i
-          class="fa fa-chevron-circle-right px-2 cursor-pointer"
+          className="fa fa-chevron-circle-right px-2 cursor-pointer"
           aria-hidden="true"
           onClick={() => scrollBannerServices(100)}
         ></i>

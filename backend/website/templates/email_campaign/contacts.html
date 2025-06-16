@@ -1,0 +1,80 @@
+{% extends layout_path %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}Email - List{% endblock %}
+
+{% block vendor_css %}
+    {{ block.super }}
+{% endblock vendor_css %}
+
+{% block vendor_js %}
+    {{ block.super }}
+{% endblock vendor_js %}
+
+{% block page_js %}
+    {{ block.super }}
+{% endblock page_js %}
+
+{% block content %}
+    <div class="card">
+        <div class="d-flex card-header align-items-center justify-content-between flex-column flex-md-row">
+            <div>Email List</div>
+            <a href="{% url 'upload_lead' %}?upload_type=email_contact_list" class="btn btn-outline-primary">
+                <span class="tf-icons bx bx-upload bx-18px me-2"></span>Upload Contacts
+              </a>
+        </div>
+        <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    {% if list %}
+                        {% for datum in list %}
+                            <tr>
+                                <td>{{ datum.email }}</td>
+                                <td>{{ datum.first_name }}</td>
+                                <td>{{ datum.last_name }}</td>
+                                <td>{{ datum.created_at }}</td>
+                                <td><span class="badge bg-label-primary me-1">{{ datum.status }}</span></td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                            <i class="bx bx-dots-vertical-rounded"></i></button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="{% url 'delete_email_campaign_contact' %}?id={{ datum.id }}">
+                                                <i class="bx bx-trash-alt me-1"></i>
+                                                Delete
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td>No Content</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer">
+            <div class="col-md-12 d-flex align-items-center justify-content-end flex-column flex-md-row gap-2 py-2">
+                <button type="button" class="btn btn-outline-primary" onclick="history.back()">
+                    <span class="tf-icons bx bx-window-close bx-18px me-2"></span>Cancel
+                </button>
+            </div>
+        </div>
+        {% include "layout/partials/pagination.html" %}
+    </div>
+{% endblock %}

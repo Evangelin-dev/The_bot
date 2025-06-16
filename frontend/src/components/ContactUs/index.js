@@ -38,19 +38,19 @@ const ContactUs = () => {
           >
             <div className="fs-6 fw-normal">
               <div className="">
-                <i class="fa fa-phone pe-4" aria-hidden="true"></i>
+                <i className="fa fa-phone pe-4" aria-hidden="true"></i>
                 <span>Sales Enquiry :- +91 9892969658</span>
               </div>
               <div>
-                <i class="fa fa-phone pe-4 pt-2" aria-hidden="true"></i>
+                <i className="fa fa-phone pe-4 pt-2" aria-hidden="true"></i>
                 <span>Support :- +91 9892969658</span>
               </div>
               <div className="py-2">
-                <i class="fa fa-envelope pe-4" aria-hidden="true"></i>
+                <i className="fa fa-envelope pe-4" aria-hidden="true"></i>
                 <span>harry@thebot.agency</span>
               </div>
               <div>
-                <i class="fa fa-map-marker pe-4" aria-hidden="true"></i>
+                <i className="fa fa-map-marker pe-4" aria-hidden="true"></i>
                 <span>
                   Aaradhya Square B Wing 1005, Naidu Colony, Ghatkopar East
                   Mumbai 400075.

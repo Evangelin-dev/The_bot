@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./bot-styles.css"; // Your separate CSS file
 import Script from "next/script";
+import { BackgroundBeams } from "@/landingpage/components/ui/background-beams";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,7 +26,6 @@ export default function BotLayout({ children }) {
           rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
         />
-        {/* Analytics scripts */}
         <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-TCECG1HYD7"
@@ -57,10 +57,12 @@ gtag('config', 'G-TCECG1HYD7');`,
 
       <body className={`bot-body ${geistSans.variable} ${geistMono.variable}`}>
         <div className="bot-container">
+          <div className="fixed inset-0 -z-10 pointer-events-none">
+            <BackgroundBeams />
+          </div>
           {children}
         </div>
-        
-        {/* Bot-specific scripts */}
+
         <Script src="https://code.jquery.com/jquery-2.1.3.min.js" />
         <Script
           src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"

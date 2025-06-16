@@ -1,0 +1,30 @@
+{% if is_paginated %}
+  <div class='row mx-1'>
+    <div class='col-sm-12 col-md-12'>
+      <div class='dataTables_paginate paging_simple_numbers'>
+        <ul class="pagination" style='white-space: nowrap;justify-content: flex-end;'>
+          {% if page_obj.has_previous %}
+            <li class="paginate_button page-item previous">
+              <a href="?page={{ page_obj.previous_page_number }}" class="page-link">
+                <i class="bx bx-left-arrow-circle"></i>
+              </a>
+            </li>
+          {% endif %}
+          <li class="mx-sm-2">
+            <a href="#" class="page-link">
+              Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </a>
+          </li>
+          {% if page_obj.has_next %}
+            <li class="paginate_button page-item next">
+              <a href="?page={{ page_obj.next_page_number }}" class="page-link">
+                <i class="bx bx-right-arrow-circle"></i>
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+{% endif %}

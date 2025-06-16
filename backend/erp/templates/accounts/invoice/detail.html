@@ -1,0 +1,564 @@
+{% extends layout_path %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}Invoice Details{% endblock %}
+
+{% block vendor_css %}
+    {{ block.super }}
+    <style>
+        td, th {
+            padding: 0.2rem 0.6rem !important
+        }
+    </style>
+{% endblock vendor_css %}
+
+{% block vendor_js %}
+    {{ block.super }}
+{% endblock vendor_js %}
+
+{% block page_js %}
+    <script>
+
+        var app = new Vue({
+            delimiters: ['[[', ']]'],
+            el: '#invoice',
+            data: JSON.parse('{{ PAYLOAD | escapejs }}'),
+            methods: {
+                reCalculateAmount: function (){
+                    for (let i = 0; i < this.selectedItems.length; i++) {
+                        this.calculateAmount(i, this.selectedItems[i])
+                    }
+                },
+                calculateAmount: function (index, item) {
+                    this.selectedItems[index]["gross_amount"] = this.selectedItems[index].qty * item.price_in_rs
+                    this.selectedItems[index]["discount_amount"] = parseInt(parseInt(this.selectedItems[index].discount_per * this.selectedItems[index]["net_amount"]) / 100)
+                    this.selectedItems[index]["net_amount"] = this.selectedItems[index]["gross_amount"] - this.selectedItems[index]["discount_amount"]
+                    if (this.customer?.currency === 'INR') {
+                        let tempTaxData = {
+                            cgst: {per: 0, tax_amount: 0},
+                            sgst: {per: 0, tax_amount: 0},
+                            igst: {per: 0, tax_amount: 0}
+                        }
+                        let taxAmount = 0
+                        if (this.is_taxable) {
+                            if (this.customer?.shipping_address?.state?.toLowerCase() === this.company?.state?.toLowerCase()) {
+                                for (let idx = 0; idx < item?.tax_template?.length; idx++) {
+                                    if (item?.tax_template[idx].name === 'SGST') {
+                                        tempTaxData.sgst.per = item?.tax_template[idx].tax_percentage
+                                        tempTaxData.sgst.tax_amount = (this.selectedItems[index]["net_amount"] * tempTaxData.sgst.per) / 100
+                                        taxAmount += tempTaxData.sgst.tax_amount
+                                    }
+                                    if (item?.tax_template[idx].name === 'CGST') {
+                                        tempTaxData.cgst.per = item?.tax_template[idx].tax_percentage
+                                        tempTaxData.cgst.tax_amount = (this.selectedItems[index]["net_amount"] * tempTaxData.cgst.per) / 100
+                                        taxAmount += tempTaxData.cgst.tax_amount
+                                    }
+                                }
+                            } else {
+                                for (let idx = 0; idx < item?.igst_tax_template?.length; idx++) {
+                                    if (item?.igst_tax_template[idx].name === 'IGST') {
+                                        tempTaxData.igst.per = item?.igst_tax_template[idx].tax_percentage
+                                        tempTaxData.igst.tax_amount = (this.selectedItems[index]["net_amount"] * item?.igst_tax_template[idx].tax_percentage) / 100
+                                        taxAmount += tempTaxData.igst.tax_amount
+                                    }
+                                }
+                            }
+                        }
+
+                        this.selectedItems[index]["tax_data"] = tempTaxData
+                        this.selectedItems[index]["tax_amount"] = taxAmount
+                    }
+                    this.calculateTax()
+                },
+                calculateTax: function () {
+                    this.total_amount = 0
+                    this.net_amount = 0
+                    this.discount_percentage = 0
+                    this.discount_amount = 0
+                    this.gross_amount = 0
+                    this.tax_data = {
+                        cgst: {per: 0, tax_amount: 0},
+                        sgst: {per: 0, tax_amount: 0},
+                        igst: {per: 0, tax_amount: 0}
+                    }
+                    this.tax_amount = 0
+
+                    if (this.customer?.currency === 'INR') {
+                        for (let index = 0; index < this.selectedItems.length; index++) {
+                            this.gross_amount += this.selectedItems[index]["gross_amount"]
+                            this.discount_amount += this.selectedItems[index]["discount_amount"]
+                            this.tax_amount += this.selectedItems[index]["tax_amount"]
+                            this.net_amount += this.selectedItems[index]["net_amount"]
+                            this.total_amount += (this.selectedItems[index]["gross_amount"] - this.selectedItems[index]["discount_amount"])
+                            let tempTaxData = this.selectedItems[index]["tax_data"]
+                            this.tax_data.cgst.per = tempTaxData.cgst.per
+                            this.tax_data.cgst.tax_amount += tempTaxData.cgst.tax_amount
+                            this.tax_data.sgst.per = tempTaxData.sgst.per
+                            this.tax_data.sgst.tax_amount += tempTaxData.sgst.tax_amount
+                            this.tax_data.igst.per = tempTaxData.igst.per
+                            this.tax_data.igst.tax_amount += tempTaxData.igst.tax_amount
+                            this.net_amount += this.selectedItems[index]["tax_amount"]
+                        }
+                    } else {
+
+                    }
+                }
+            }
+        });
+
+        $(document).ready(function () {
+            $('#customer').select2(
+                {
+                    tags: false,
+                    disabled: true,
+                    ajax: {
+                        url: "/api/customer/",
+                        dataType: 'json',
+                        type: "GET",
+                        delay: 250,
+                        data: function (search) {
+                            return {
+                                search: search,
+                            };
+                        },
+                        processResults: function (data) {
+                            return {
+                                results: $.map(data.results, function (item) {
+                                    return {
+                                        text: item.name,
+                                        id: item.id
+                                    }
+                                })
+                            };
+                        }
+                    },
+                    placeholder: "Select Customer",
+                }
+            ).on('select2:select', function (e) {
+                startLoad()
+                $.ajax({
+                    url: `/api/customer/${e.target.value}`,
+                    cache: false,
+                    success: function (data) {
+                        app.customer = data
+                        startLoad()
+                    }
+                });
+            });
+
+            $('#company').select2(
+                {
+                    tags: false,
+                    disabled: true,
+                    ajax: {
+                        url: "/api/company/",
+                        dataType: 'json',
+                        type: "GET",
+                        delay: 250,
+                        data: function (search) {
+                            return {
+                                search: search,
+                            };
+                        },
+                        processResults: function (data) {
+                            return {
+                                results: $.map(data.results, function (item) {
+                                    return {
+                                        text: item.name,
+                                        id: item.id
+                                    }
+                                })
+                            };
+                        }
+                    },
+                    placeholder: "Select Customer",
+                }
+            ).on('select2:select', function (e) {
+                startLoad()
+                $.ajax({
+                    url: `/api/company/${e.target.value}`,
+                    cache: false,
+                    success: function (data) {
+                        app.company = data
+                        startLoad()
+                    }
+                });
+            });
+
+            $('#selectItem').select2(
+                {
+                    minimumInputLength: 2,
+                    tags: false,
+                    ajax: {
+                        url: "/api/item/",
+                        dataType: 'json',
+                        type: "GET",
+                        delay: 250,
+                        data: function (search) {
+                            return {
+                                search: search,
+                            };
+                        },
+                        processResults: function (data) {
+                            return {
+                                results: $.map(data.results, function (item) {
+                                    return {
+                                        text: item.name,
+                                        id: item.id
+                                    }
+                                })
+                            };
+                        }
+                    },
+                    placeholder: "Select Item",
+                }
+            ).on('select2:select', function (e) {
+                startLoad()
+                $.ajax({
+                    url: `/api/item/${e.target.value}`,
+                    cache: false,
+                    success: function (data) {
+                        app.selectedItems.push(
+                            {
+                                ...data, qty: 0, net_amount: 0, tax_data: {}, tax_amount: 0, gross_amount: 0,
+                                discount_per: 0, discount_amount: 0
+                            }
+                        )
+                        startLoad()
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function () {
+
+
+            $('#invoiceForm').submit(function (e) {
+                e.preventDefault();
+                var invoiceForm = document.getElementById('invoiceForm');
+                if (invoiceForm.checkValidity() === false) {
+                    var list = invoiceForm.querySelectorAll(':invalid');
+                    for (var item of list) {
+                        item.setAttribute("style", "border: 1px solid red;")
+                        item.focus()
+                    }
+                }
+                if (!invoiceForm.checkValidity()) return false;
+                startLoad()
+                $.ajax({
+                    url: `/api/save-invoice/`,
+                    cache: false,
+                    type: "POST",
+                    headers: {'X-CSRFToken': $('[name="csrfmiddlewaretoken"]').attr('value')},
+                    data: JSON.stringify({
+                        selectedItems: app.selectedItems, net_amount: app.net_amount,
+                        discount_percentage: app.discount_percentage,
+                        discount_amount: app.discount_amount,
+                        gross_amount: app.gross_amount,
+                        tax_amount: app.tax_amount,
+                        tax_data: app.tax_data,
+                        customer: app.customer,
+                        company: app.company,
+                        total_amount: app.total_amount,
+                        terms_and_condition: $('#terms_and_condition').find(":selected").val(),
+                        bank_detail: $('#bank_detail').find(":selected").val(),
+                        date: app.date,
+                        id: app.id,
+                        po_date: app.po_date,
+                        po_no: app.po_no,
+                        is_taxable: app.is_taxable
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        startLoad()
+                        if(data?.status === true){
+                            window.location.reload()
+                        }else {
+                            window.confirm(data?.msg)
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+    {{ block.super }}
+{% endblock page_js %}
+
+{% block content %}
+    <div class="card" id="invoice">
+        <div class="card-header d-flex flex-column flex-md-row align-items-center justify-content-between">
+            <div class="head-label text-center">
+                <h5 class="card-title mb-0">{{ data.invoice_no }}</h5>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <a target="_blank" href="{% url 'invoice_print_template' pk=data.encrypt %}" class="btn btn-outline-primary">
+                    <span class="tf-icons bx bx-printer bx-18px me-2"></span> Download
+                </a>
+                {% if data.status != 'Approved' %}
+                    <a href="{% url 'approve_invoice' pk=data.encrypt %}" class="btn btn-outline-primary">
+                        <span class="tf-icons bx bx-sticker bx-18px me-2"></span>Approve
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="card-body">
+            {% if errors %}
+                <ul>
+                    {% for error in errors %}
+                        <li class="text-danger">
+                            {{ error }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <form id="invoiceForm" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" value="{{ request.user.id }}" name="created_by">
+                <input type="hidden" value="{{ request.user.id }}" name="updated_by">
+                <div class='row'>
+                    <div class="col-md-4">
+                        <label for="customer" class="form-label">Customer</label>
+                        <select class="w-100 form-control form-select" id="customer" name="customer" required>
+                            <option value="{{ data.customer.id }}" selected>{{ data.customer.name }}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="company" class="form-label">Company</label>
+                        <select class="w-100 form-control form-select" id="company" name="company" required>
+                            <option value="{{ data.company.id }}" selected>{{ data.company.name }}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="date" class="form-label">Date</label>
+                        <input name="date" v-model="date" type="date" class="form-control" placeholder="YYYY-MM-DD"
+                                       id="date-flatpickr-date" >
+                    </div>
+                    <div class="col-md-4">
+                        <label for="po_date" class="form-label">Po Date</label>
+                        <input name="po_date" v-model="po_date" type="date" class="form-control" placeholder="YYYY-MM-DD"
+                               id="date-flatpickr-date">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="po_no" class="form-label">Po Number</label>
+                        <input name="po_no" v-model="po_no" type="text" class="form-control" placeholder="Please Enter PO No"
+                               id="po_no">
+                    </div>
+                    <div class="col-md-12 py-4">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="fw-bolder" scope="col">
+                                        Billing Address
+                                    </th>
+                                    <th class="fw-bolder" scope="col">
+                                        Shipping Address
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <b>{{ data.billing_address.name }}</b><br>
+                                        <b>{{ data.billing_address.address }}</b><br>
+                                        <b>Tel</b> : {{ data.billing_address.phone }}<br>
+                                        <b>Email</b> : {{ data.billing_address.email }}<br>
+                                        <b>State</b> : {{ data.billing_address.state }}<br>
+                                        <b>Country</b> : {{ data.billing_address.country }}<br>
+                                        <b>GST No</b> : {{ data.billing_address.gst_no }}<br>
+                                    </td>
+                                    <td>
+                                        <b>{{ data.shipping_address.name }}</b><br>
+                                        <b>{{ data.shipping_address.address }}</b><br>
+                                        <b>Tel</b> : {{ data.shipping_address.phone }}<br>
+                                        <b>Email</b> : {{ data.shipping_address.email }}<br>
+                                        <b>State</b> : {{ data.shipping_address.state }}<br>
+                                        <b>Country</b> : {{ data.shipping_address.country }}<br>
+                                        <b>GST No</b> : {{ data.shipping_address.gst_no }}<br>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-md-12 d-flex justify-content-end">
+                        <div>
+                            <input class="form-check-input " v-model="is_taxable" type="checkbox" name="is_taxable"
+                                   id="is_taxable" @change="reCalculateAmount()">
+                            <label class="form-check-label" for="is_taxable">
+                                Is Taxable
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="accordion mt-4" id="itemAccordian">
+                            <div class="card accordion-item">
+                                <h2 class="accordion-header d-flex justify-content-between" id="headingOne">
+                                    <a href="#" class="btn btn-xs btn-outline-primary" data-bs-toggle="collapse"
+                                       data-bs-target="#itemSelectAcc">
+                                        <span class="tf-icons bx bx-plus me-2"></span>Add Items
+                                    </a>
+                                    <span class="fw-light fs-5">
+                                        Currency :- [[customer.currency]]
+                                    </span>
+                                </h2>
+                                <div id="itemSelectAcc" class="accordion-collapse collapse"
+                                     data-bs-parent="#itemAccordian">
+                                    <div class="">
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-md-6">
+                                                <label for="selectItem" class="form-label">Item</label>
+                                                <select class="w-100 form-control form-select" id="selectItem"
+                                                        name="selectItem">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Sr. No
+                                    </th>
+                                    <th class="fw-bolder" scope="col">
+                                        Description Of Goods
+                                    </th>
+                                    <th class="fw-bolder" scope="col">
+                                        Qty
+                                    </th>
+
+                                    <th class="fw-bolder" scope="col">
+                                        Discount Per
+                                    </th>
+                                    <th class="fw-bolder" scope="col">
+                                        Rate
+                                    </th>
+                                    <th class="fw-bolder" scope="col">
+                                        Sub Total
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="(item, index) in selectedItems">
+                                <td>
+                                    [[index+1]]
+                                </td>
+                                <td>
+                                    [[ item.name ]]
+                                    <br>
+                                    [[item.description]]
+                                </td>
+                                <td>
+                                    <input type="number" v-model="selectedItems[index].qty"
+                                           @change="calculateAmount(index, item)"/>
+                                </td>
+                                <td>
+                                    <input type="number" v-model="selectedItems[index].discount_per"
+                                           @change="calculateAmount(index, item)"/>
+                                </td>
+                                <td>
+                                    [[item.price_in_rs]]
+                                </td>
+                                <td>
+                                    [[item.net_amount]]
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">
+                                    Total
+                                </td>
+                                <td>
+                                    [[total_amount]]
+                                </td>
+                            </tr>
+                            <tr v-if="is_taxable && customer?.shipping_address?.state?.toLowerCase() === company?.state?.toLowerCase() && customer?.currency === 'INR'">
+                                <td class="text-end fw-bolder" colspan="5">
+                                    SGTS
+                                </td>
+                                <td>
+                                    [[tax_data?.sgst?.tax_amount]]
+                                </td>
+                            </tr>
+                            <tr v-if="is_taxable && customer?.shipping_address?.state?.toLowerCase() === company?.state?.toLowerCase() && customer?.currency === 'INR'">
+                                <td class="text-end fw-bolder" colspan="5">
+                                    CGTS
+                                </td>
+                                <td>
+                                    [[tax_data?.cgst?.tax_amount]]
+                                </td>
+                            </tr>
+                            <tr v-if="is_taxable && customer?.shipping_address?.state?.toLowerCase() !== company?.state?.toLowerCase() && customer?.currency === 'INR'">
+                                <td class="text-end fw-bolder" colspan="5">
+                                    IGST
+                                </td>
+                                <td>
+                                    [[tax_data?.igst?.tax_amount]]
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-end fw-bolder" colspan="5">
+                                    Grand Total
+                                </td>
+                                <td>
+                                    [[net_amount]]
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label for="terms_and_condition" class="form-label">Terms & Condition</label>
+                        <select name="terms_and_condition" id="terms_and_condition" class="form-select" required>
+                            <option value="">Select Terms & Condition</option>
+                            {% for terms_and_condition in terms_and_conditions %}
+                                {% if data.terms_and_condition.id == terms_and_condition.id %}
+                                    <option value="{{ terms_and_condition.id }}"
+                                            selected>{{ terms_and_condition.name }}</option>
+                                {% else %}
+                                    <option value="{{ terms_and_condition.id }}">{{ terms_and_condition.name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label for="bank_detail" class="form-label">Bank Details</label>
+                        <select name="bank_details" id="bank_detail" class="form-select" required>
+                            <option value="">Select Bank Details</option>
+                            {% for bank_detail in bank_details %}
+                                {% if data.bank_details.id == bank_detail.id %}
+                                    <option value="{{ bank_detail.id }}" selected>{{ bank_detail.account_name }}
+                                        - {{ bank_detail.account_number }}</option>
+                                {% else %}
+                                    <option value="{{ bank_detail.id }}">{{ bank_detail.account_name }}
+                                        - {{ bank_detail.account_number }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-12 d-flex align-items-center justify-content-end flex-column flex-md-row gap-2 py-2">
+                        <button type="button" class="btn btn-outline-primary" onclick="history.back()">
+                            <span class="tf-icons bx bx-window-close bx-18px me-2"></span>Cancel
+                        </button>
+{#                        {% if data.status != 'Approved' %}#}
+                            <button id="saveQuotation" type="submit" class="btn btn-outline-primary">
+                                <span class="tf-icons bx bx-save bx-18px me-2"></span>Save
+                            </button>
+{#                        {% endif %}#}
+                    </div>
+                </div>
+            </form>
+            <div>
+                <ul>
+                    {% for activity in activities %}
+                        <li> {{ activity.message }} on {{ activity.created_at }} by {{ activity.created_by.full_name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

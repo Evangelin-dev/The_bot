@@ -1,0 +1,42 @@
+{% extends layout_path %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}Login{% endblock %}
+
+{% block page_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static  'vendor/css/pages/page-auth.css' %}">
+    <link rel="stylesheet" href="{% static  'css/login-page.css' %}">
+{% endblock page_css %}
+
+{% block page_js %}
+{% endblock page_js %}
+
+
+{% block content %}
+    <div class="container d-flex align-items-center justify-content-center" style="height: 100vh">
+
+        <div class="card w-75 p-4">
+            <div class="card-header">
+                <div class="app-brand-text demo menu-text text-center"
+                     style='font-size: 2rem'>
+                    <img src="{% static 'img/avatars/bot-logo-white.png' %}" style="background: black;
+    width: 15vw;" alt="{% get_theme_variables 'template_name' %}">
+
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-md-8">
+                        <div class="py-3 fs-3 text-center text-success">
+                            {{ msg}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

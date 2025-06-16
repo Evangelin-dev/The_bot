@@ -4,14 +4,15 @@
   padding: 0 !important;
   box-sizing: border-box !important;
   font-family: var(--font-geist-sans) !important;
-  background-color: black;
+  background-color: black  !important;
+  
 }
 .bot-wrapper {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: var(--font-geist-sans); /* Or whatever font you use */
-  background-color: #000000; /* Or #0a0a0a, etc. */
+  font-family: var(--font-geist-sans);
+  background-color: transparent !important;
   width: 100%;
-  overflow-x: hidden; /* Prevents horizontal scrollbars */
+  overflow-x: hidden;
 }

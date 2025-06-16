@@ -9,15 +9,16 @@ const PhonePopUp = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      document.getElementById("offer-modal-btn").click();
+      const btn = document.getElementById("offer-modal-btn");
+      if (btn) btn.click();
     }, 2000);
   }, []);
 
   return (
     <>
-      <span href="" class="btn-whatsapp-pulse">
+      <span className="btn-whatsapp-pulse">
         <i
-          class="fa fa-phone cursor-pointer"
+          className="fa fa-phone cursor-pointer"
           data-bs-toggle="modal"
           data-bs-target="#phoneNumberPoup"
           id="phone-modal-btn"

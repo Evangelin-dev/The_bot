@@ -1,0 +1,73 @@
+{% extends layout_path %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}Email Campaign - List{% endblock %}
+
+{% block vendor_css %}
+    {{ block.super }}
+{% endblock vendor_css %}
+
+{% block vendor_js %}
+    {{ block.super }}
+{% endblock vendor_js %}
+
+{% block page_js %}
+    {{ block.super }}
+{% endblock page_js %}
+
+{% block content %}
+    <div class="card">
+        <div class="d-flex card-header align-items-center justify-content-between flex-column flex-md-row">
+            <div>Email Campaign List</div>
+            <div class="d-flex align-items-center gap-3">
+                <a href="{% url 'new_email_campaign' %}" class="btn btn-outline-primary">
+                    <span class="tf-icons bx bx-plus bx-18px me-2"></span>New Campaign
+                </a>
+                <a href="{% url 'email_contact_list' %}" class="btn btn-outline-primary">
+                    <span class="tf-icons bx bxs-contact bx-18px me-2"></span>Campaign Contacts
+                </a>
+            </div>
+        </div>
+        <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Campaign Name</th>
+                    <th>Total Emails</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    {% for datum in data %}
+                        <tr>
+                            <td><span>{{ datum.name }}</span></td>
+                            <td>{{ datum.email_campaign_fk.all.count }}</td>
+                            <td><span class="badge bg-label-primary me-1">{{ datum.status }}</span></td>
+                            <td>
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                            data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i></button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{% url 'email_campaign_details' pk=datum.id %}">
+                                            <i class="bx bx-edit-alt me-1"></i>
+                                            Detail
+                                        </a>
+                                        <a class="dropdown-item text-danger" href="{% url 'delete' model_name='EmailCampaign' app_name='website' %}?id={{ datum.id }}&redirect=email_campaign">
+                                            <i class="bx bx-trash-alt me-1"></i>
+                                            Delete
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% include "layout/partials/pagination.html" %}
+        </div>
+    </div>
+{% endblock %}

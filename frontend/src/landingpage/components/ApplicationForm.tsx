@@ -74,7 +74,7 @@ export default function ApplicationForm() {
       } else {
         const errorData = await response.json();
         console.error('Error:', errorData);
-        alert('Failed to submit application. Please try again.');
+        alert(errorData.msg);
       }
     } catch (error) {
       console.error('Network error:', error);

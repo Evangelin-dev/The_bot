@@ -1,0 +1,45 @@
+<div class="modal fade" id="addActivity" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1"
+     aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form method="post" onsubmit="startLoad()" action="{% url 'leads_activity' %}">
+                    <div class='row'>
+                        <div class='col-12 fs-5 fw-bolder py-3'>
+                            Add Follow Up Activity
+                        </div>
+                        <input type="hidden" value="{{ lead_id }}" name="lead">
+                        <input type="hidden" value="{{ request.user.id }}" name="created_by">
+                        {% csrf_token %}
+                        <div class="col-md-12 py-2">
+                            <label for="activity_type" class="form-label">Activity Type</label>
+                            <input type="text" class="form-control" id="activity_type"
+                                   placeholder="Please Enter Activity Type"
+                                   name="activity_type"
+                                   required
+                            >
+                        </div>
+                        <div class="col-md-12 py-2">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message"
+                                      placeholder="Please Enter Message"
+                                      name="message"
+                                      required
+                                      cols="4"
+                                      rows="5"
+                            ></textarea>
+                        </div>
+                        <div class="col-md-12 d-flex align-items-center justify-content-end flex-column flex-md-row gap-2 py-2">
+                            <button type="button" data-bs-dismiss="modal" class="btn btn-outline-primary">
+                                <span class="tf-icons bx bx-window-close bx-18px me-2"></span>Cancel
+                            </button>
+                            <button type="submit" class="btn btn-outline-primary" data-bs-dismiss="modal">
+                                <span class="tf-icons bx bx-save bx-18px me-2"></span>Save
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
