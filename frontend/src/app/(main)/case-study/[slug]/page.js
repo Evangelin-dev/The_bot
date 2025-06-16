@@ -1,5 +1,7 @@
 import styles from "./styles.module.css";
 import CustomImage from "@/components/custom/Image";
+import Link from 'next/link';
+
 
 const getBlogDetailData = async (slug) => {
   let data = await fetch(
@@ -39,7 +41,7 @@ const CaseStudyDetails = async ({ params }) => {
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item ">
-                <a href="/case-study">Case Study</a>
+                <Link href="/case-study">Case Study</Link>
               </li>
               <li class="breadcrumb-item active" aria-current="page">
                 {slug}
