@@ -1,104 +1,58 @@
 "use client";
-import { useEffect } from "react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import styles from "./styles.module.css";
 import OutLinedButton from "../custom/OutLinedButton";
-import { useRouter } from "next/navigation";
+import ScratchableModal from "./ScratchModal";
+
+const CONTACT_INFO = {
+  sales: "+91 9892969658",
+  support: "+91 9892969658",
+  email: "harry@thebot.agency",
+};
 
 const PhonePopUp = () => {
   const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => {
-      document.getElementById("offer-modal-btn").click();
-    }, 2000);
-  }, []);
+
+  // auto open logic 
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setIsModalOpen(true);
+  //   }, 2000);
+  //   return () => clearTimeout(timer);
+  // }, []);
+
+   const connectButton = (
+    <div onClick={() => router.push("/contact-us")}>
+      <OutLinedButton name={"Connect With Us"} />
+    </div>
+  );
 
   return (
     <>
-      <span href="" class="btn-whatsapp-pulse">
-        <i
-          class="fa fa-phone cursor-pointer"
-          data-bs-toggle="modal"
-          data-bs-target="#phoneNumberPoup"
-          id="phone-modal-btn"
-        ></i>
+      <span  className={styles.btn_whatsapp_pulse} onClick={() => setIsModalOpen(true)}>
+        <i className="fa fa-phone cursor-pointer"></i>
       </span>
 
-      {/* <!-- Modal --> */}
-      <div
-        className={`modal fade zoom `}
-        id="phoneNumberPoup"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabIndex="-1"
-        aria-labelledby="phoneNumberPoupLabel"
-        aria-hidden="true"
+      <ScratchableModal 
+        show={isModalOpen} 
+        onClose={() => setIsModalOpen(false)}
+        actionButton={connectButton}
       >
-        <div className="modal-dialog modal-dialog-centered modal-lg">
-          <div className={`modal-content ${styles.lanuching_modal_bg}`}>
-            <div className="modal-header justify-content-between">
-              <h5 className="modal-title" id="phoneNumberPoupLabel">
-                Call Us Now
-              </h5>
-              <i
-                className="fa fa-times cursor-pointer"
-                aria-hidden="true"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></i>
-            </div>
-            <div className="modal-body">
-              <div
-                className="p-1 border border-0 rounded-1"
-                // style={{ background: "white", color: "black" }}
-              >
-                <div className="container">
-                  <div className="form py-2">
-                    <ul>
-                      <li>
-                        Sales Enquiry :-{" "}
-                        <a
-                          className="text-white text-decoration-underline"
-                          href="tel:+919892969658"
-                        >
-                          +91 9892969658
-                        </a>
-                      </li>
-                      <li>
-                        Support :-{" "}
-                        <a
-                          className="text-white text-decoration-underline"
-                          href="tel:+919892969658"
-                        >
-                          +91 9892969658
-                        </a>
-                      </li>
-                      <li>
-                        Email :-{" "}
-                        <a
-                          className="text-white text-decoration-underline"
-                          href="mailto:harry@thebot.agency"
-                        >
-                          harry@thebot.agency
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                    onClick={() => {
-                      router.push("/contact-us");
-                    }}
-                  >
-                    <OutLinedButton name={"Connect With Us"} />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <ul>
+          <li>
+            Sales Enquiry: <a href={`tel:${CONTACT_INFO.sales}`}>{CONTACT_INFO.sales}</a>
+          </li>
+          <li>
+            Support: <a href={`tel:${CONTACT_INFO.support}`}>{CONTACT_INFO.support}</a>
+          </li>
+          <li>
+            Email: <a href={`mailto:${CONTACT_INFO.email}`}>{CONTACT_INFO.email}</a>
+          </li>
+        </ul>
+      </ScratchableModal>
     </>
   );
 };

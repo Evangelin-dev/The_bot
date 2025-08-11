@@ -39,7 +39,7 @@ const ClientTestimonial = ({ data = CLIENT_TESTIMONIAL }) => {
               <div
                 className={`${style.testimonial_content} d-flex fadeIn`}
                 style={{ flexDirection: "column" }}
-                key={`testimonial-${clientIdx}`}
+                key={`testimonial-${client.name}-${clientIdx}`}
               >
                 <div
                   className={`${style.testimonial_msg}`}

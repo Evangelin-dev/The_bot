@@ -113,18 +113,18 @@ const ThreeDaysWebsiteDelivery = () => {
     <>
       <div
         id="carouselExampleDark"
-        class="carousel carousel-dark slide"
+        className="carousel carousel-dark slide"
         data-bs-ride="carousel"
       >
-        <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="10000">
+        <div className="carousel-inner">
+          <div className="carousel-item active" data-bs-interval="10000">
             <CustomImage
               src={`/3-days-website/animated-geometric-background.svg`}
               wrapperClss="d-block w-100"
               imgClass={`rounded ${styles.website_dev_banner_img}`}
               alt="Three Days Deliver Banner"
             />
-            <div class="carousel-caption">
+            <div className="carousel-caption">
               <div className="d-flex align-items-center h-100 justify-content-center row">
                 <div
                   className={`col-md-8 text-center border-1 border p-5 ${styles.webite_perefect_bg} rounded`}
@@ -220,7 +220,7 @@ const ThreeDaysWebsiteDelivery = () => {
             </div>
 
             <div
-              class={`row justify-content-center row-equal-height ${styles.row_equal_height} p-5`}
+              className={`row justify-content-center row-equal-height ${styles.row_equal_height} p-5`}
             >
               <div className="col-md-12 text-white text-center pb-1 fadeIn">
                 <div className="fs-2 fw-bolder pb-2">
@@ -267,7 +267,7 @@ const ThreeDaysWebsiteDelivery = () => {
                       className={`cursor-pointer ${styles.what_included_item} py-1`}
                     >
                       <i
-                        class="fa fa-check-circle text-success me-2"
+                        className="fa fa-check-circle text-success me-2"
                         aria-hidden="true"
                       ></i>
                       Professionally Designed Website (Responsive & Fast)
@@ -276,7 +276,7 @@ const ThreeDaysWebsiteDelivery = () => {
                       className={`cursor-pointer ${styles.what_included_item} py-1`}
                     >
                       <i
-                        class="fa fa-check-circle text-success me-2"
+                        className="fa fa-check-circle text-success me-2"
                         aria-hidden="true"
                       ></i>
                       SEO-Optimised with Keywords
@@ -285,7 +285,7 @@ const ThreeDaysWebsiteDelivery = () => {
                       className={`cursor-pointer ${styles.what_included_item} py-1`}
                     >
                       <i
-                        class="fa fa-check-circle text-success me-2"
+                        className="fa fa-check-circle text-success me-2"
                         aria-hidden="true"
                       ></i>
                       Admin Panel – Update Your Blog & Content Easily
@@ -294,7 +294,7 @@ const ThreeDaysWebsiteDelivery = () => {
                       className={`cursor-pointer ${styles.what_included_item} py-1`}
                     >
                       <i
-                        class="fa fa-check-circle text-success me-2"
+                        className="fa fa-check-circle text-success me-2"
                         aria-hidden="true"
                       ></i>
                       WhatsApp Chat Button – Get Instant Leads
@@ -303,7 +303,7 @@ const ThreeDaysWebsiteDelivery = () => {
                       className={`cursor-pointer ${styles.what_included_item} py-1`}
                     >
                       <i
-                        class="fa fa-check-circle text-success me-2"
+                        className="fa fa-check-circle text-success me-2"
                         aria-hidden="true"
                       ></i>
                       Contact Form with Auto Email Response
@@ -312,7 +312,7 @@ const ThreeDaysWebsiteDelivery = () => {
                       className={`cursor-pointer ${styles.what_included_item} py-1`}
                     >
                       <i
-                        class="fa fa-check-circle text-success me-2"
+                        className="fa fa-check-circle text-success me-2"
                         aria-hidden="true"
                       ></i>
                       Linked to Social Media Pages
@@ -321,7 +321,7 @@ const ThreeDaysWebsiteDelivery = () => {
                       className={`cursor-pointer ${styles.what_included_item} py-1`}
                     >
                       <i
-                        class="fa fa-check-circle text-success me-2"
+                        className="fa fa-check-circle text-success me-2"
                         aria-hidden="true"
                       ></i>
                       Secure Hosting Guidance & Launch Support

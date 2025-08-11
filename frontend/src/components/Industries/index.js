@@ -115,7 +115,7 @@ const Industries = ({
                     >
                       <div className="card-body text-start text-white">
                         <div className="fw-bolder fs-5 pb-2  pink_text">
-                          <i class="fa fa-bolt me-2" aria-hidden="true"></i>
+                          <i className="fa fa-bolt me-2" aria-hidden="true"></i>
                           Say Goodbye to :
                         </div>
                         <ol>
@@ -145,7 +145,7 @@ const Industries = ({
                     >
                       <div className="card-body text-start text-white">
                         <div className="fw-bolder fs-5 pb-2 pink_text">
-                          <i class="fa fa-flag me-2" aria-hidden="true"></i>
+                          <i className="fa fa-flag me-2" aria-hidden="true"></i>
                           Say Hello to :
                         </div>
                         <ol>
@@ -207,7 +207,7 @@ const Industries = ({
                     key={`results-${resultsIdx}`}
                   >
                     <div className="h-100 p-4">
-                      <i class="fa fa-check pe-2" aria-hidden="true"></i>
+                      <i className="fa fa-check pe-2" aria-hidden="true"></i>
                       {results.name}
                     </div>
                   </div>

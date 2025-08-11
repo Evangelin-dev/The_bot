@@ -46,7 +46,7 @@ const SuccessMessage = () => {
             <div className="modal-body text-center text-white">
               <div className="fs-1 text-success p-3">
                 <span className="step">
-                  <i class="fa fa-check" aria-hidden="true"></i>
+                  <i className="fa fa-check" aria-hidden="true"></i>
                 </span>
               </div>
               <div className="fs-3 pt-2">Awesome !</div>
@@ -56,7 +56,7 @@ const SuccessMessage = () => {
               <div className="py-2 pb-4">
                 <button
                   type="button"
-                  class="btn btn-outline-light w-50"
+                  className="btn btn-outline-light w-50"
                   data-bs-dismiss="modal"
                 >
                   Okay

@@ -196,7 +196,7 @@ const INDUSTRIES_WE_SERVE = [
         <div>Generate consistent inquiries and boost car sales.</div>
       </div>
     ),
-    icon: <i class="fa fa-car pe-3" aria-hidden="true"></i>,
+    icon: <i className="fa fa-car pe-3" aria-hidden="true"></i>,
   },
   {
     name: "Real Estate Brokers",

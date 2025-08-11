@@ -46,7 +46,7 @@ const AboutUsPage = () => {
             <div className={`${styles.how_it_started_cotainer} p-5 text-white`}>
               <h1 className="pink_text">How It Started ? </h1>
 
-              <hr class="mt-4 mb-4" />
+              <hr className="mt-4 mb-4" />
 
               <div className="py-2">
                 Our founder,{" "}

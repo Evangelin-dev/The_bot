@@ -121,7 +121,7 @@ const WhyChooseUsCarousel = () => {
       <div className="carousel-wrapper">
         <div className="carousel-track" ref={trackRef}>
           {WHY_CHOOSE_US.map((row, index) => (
-            <div key={`bot-col-4`} className="carousel-slide">
+            <div key={index} className="carousel-slide">
               <PrCard
                 className=""
                 name={row.name}

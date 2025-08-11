@@ -16,14 +16,15 @@ const OfferPopUp = () => {
   return (
     <>
       {/* <!-- Button trigger modal --> */}
-      <div class="fixed">
+      <div className="fixed">
         <a
           href=""
-          class="button "
+          className="button"
+          id="offer-modal-btn" 
           data-bs-toggle="modal"
           data-bs-target="#offersPopup"
         >
-          <div class="buttonDiv bg-b-blue">Get Offers</div>
+          <div className="buttonDiv bg-b-blue">Get Offers</div>
         </a>
       </div>
 

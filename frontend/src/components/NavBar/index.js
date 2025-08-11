@@ -34,6 +34,10 @@ export const SERVICES = [
     url: "tech-development",
   },
   {
+    name: "App Development",
+    url: "app-development",
+  },
+  {
     name: "Seo",
     url: "seo",
   },

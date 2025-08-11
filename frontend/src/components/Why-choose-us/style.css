@@ -1,103 +1,137 @@
-.why-carousel-section {
-    padding: 2rem 1rem;
-    position: relative;
-  }
-  
-  .section-heading {
-    font-weight: bold;
-    font-size: 2rem;
-    text-align: center;
-    color: white;
-    margin-bottom: 2rem;
-  }
-  
-  .carousel-track-wrapper {
-    overflow: hidden;
-    position: relative;
-  }
-  
-  .carousel-track {
-    cursor: grab;
-    user-select: none;
-    display: flex;
-    gap: 1rem;
-    overflow-x: scroll;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  .carousel-track::-webkit-scrollbar {
-    display: none;
-  }
-  .carousel-track:active {
-    cursor: grabbing;
-  }
-  
-  .carousel-slide {
-    user-select: none;
-    scroll-behavior: smooth;
 
-  -webkit-user-select: none;
-  -ms-user-select: none;
-    flex: 0 0 100%;
-    scroll-snap-align: center;
-    display: flex;
-    justify-content: center;
-  }
-  @media (min-width: 768px) {
-    .carousel-slide {
-      flex: 0 0 50%;
-    }
-  }
-  @media (min-width: 1024px) {
-    .carousel-slide {
-      flex: 0 0 33.33%;
-    }
-  }
+.section-heading {
+  font-weight: bold;
+  font-size: 2.5rem;
+  text-align: center;
+  color: white;
+  margin-bottom: 3rem;
+}
 
-  .carousel-card {
-    width: 400px;
-    height: 500px;
-    background: transparent;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 1rem;
-  }
-  
-  .card-img-top {
-    width: 40%;
-    height: 180px;
-    object-fit: contain;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-  }
-  
-  
+.carousel-track-wrapper {
+  overflow: hidden; 
+}
 
-  .carousel-dots {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-  }
+.carousel-track {
+  display: flex;
+  gap: 1.5rem; 
   
   
-  .no-select, .no-select * {
-    user-select: none;
-    -webkit-user-drag: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-  }
+  overflow-x: auto; 
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory; 
+
   
-  .pr-card-icon img {
-    pointer-events: none;
-    user-select: none;
-    -webkit-user-drag: none;
-  }
+  padding: 0 2rem 1.5rem 2rem;
   
+  
+  scrollbar-width: thin; 
+  scrollbar-color: #6b6b6b #333; 
+}
+
+
+.carousel-track::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carousel-track::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.carousel-track::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.carousel-track::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+
+.carousel-slide {
+  scroll-snap-align: center; 
+  flex-shrink: 0; 
+}
+
+.carousel-card {
+  width: 300px;
+  height: 450px;
+  background: rgba(40, 36, 75, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.carousel-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.card-img-top {
+  width: 100%;
+  max-width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin: 0 auto 1.5rem auto;
+}
+
+
+
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  padding: 0 50px; 
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10; 
+  
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 26px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.carousel-arrow:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.carousel-arrow.left {
+  left: 10px;
+}
+
+.carousel-arrow.right {
+  right: 10px;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding: 1.5rem 0.5rem;  
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+

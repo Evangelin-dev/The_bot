@@ -88,89 +88,86 @@ const Branding = ({
         })}
 
 
-{whyChooseUs?.length > 0 && (
+        {whyChooseUs?.length > 0 && (
           <WhyChooseUsSection
             data={whyChooseUs}
-            col={` bot-col-12 ${
-              whyChooseUs?.length > 3 ? "bot-col-4" : "bot-col-3"
-            }`}
+            col={` bot-col-12 ${whyChooseUs?.length > 3 ? "bot-col-4" : "bot-col-3"
+              }`}
           />
         )}
-  
+
 
 
         {whatWeOffer?.length > 0 && (
-           <div className="text-center text-white pb-5">
+          <div className="text-center text-white pb-5">
             <div className="fw-bolder fs-1 py-4">What We Offer ?</div>
-          <WhyChooseUsCarousel
-            data={whatWeOffer}
-            col={` bot-col-12 ${
-              whatWeOffer?.length > 3 ? "bot-col-4" : "bot-col-3"
-            }`}
-          /></div>  
+            <WhyChooseUsCarousel
+              data={whatWeOffer}
+              col={` bot-col-12 ${whatWeOffer?.length > 3 ? "bot-col-4" : "bot-col-3"
+                }`}
+            /></div>
         )}
 
-                {whatSetsUp?.length > 0 && (
-                  <div className="text-center text-white py-5">
-                    <div className="fw-bolder fs-1 pb-4">What Sets Us Apart</div>
-                    <div className="row g-4">
-                      {whatSetsUp.map((item, index) => (
-                        <div className="col-md-4 col-12" key={`what-sets-up-${index}`}>
-                          <div className={`${styles.hoverCard} text-white text-center p-4`}>
-                            <i className={`fa ${item.icon} fs-2 mb-3 d-block`} aria-hidden="true"></i>
-                            <div className="fs-5">{item.name}</div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+        {whatSetsUp?.length > 0 && (
+          <div className="text-center text-white py-5">
+            <div className="fw-bolder fs-1 pb-4">What Sets Us Apart</div>
+            <div className="row g-4">
+              {whatSetsUp.map((item, index) => (
+                <div className="col-md-4 col-12" key={`what-sets-up-${index}`}>
+                  <div className={`${styles.hoverCard} text-white text-center p-4`}>
+                    <i className={`fa ${item.icon} fs-2 mb-3 d-block`} aria-hidden="true"></i>
+                    <div className="fs-5">{item.name}</div>
                   </div>
-                )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
 
         {howItWorks?.length > 0 && (
           <div className="text-center text-white pb-5">
             <div className="fw-bolder fs-1 py-4">How It Works</div>
-            
-          <WhyChooseUsCarousel
-            data={howItWorks}
-            col={` bot-col-12 ${
-              howItWorks?.length > 3 ? "bot-col-4" : "bot-col-3"
-            }`}
-          />
+
+            <WhyChooseUsCarousel
+              data={howItWorks}
+              col={` bot-col-12 ${howItWorks?.length > 3 ? "bot-col-4" : "bot-col-3"
+                }`}
+            />
           </div>
         )}
 
-{OurResults?.length > 0 && (
-  <div className="text-center text-white pb-5">
-    <div className="fw-bolder fs-1 py-4">Our Results</div>
-    <div className="row g-3 fs-5">
-      {OurResults.map((results, resultsIdx) => (
-        <div className="col-md-4 col-12" key={`results-${resultsIdx}`}>
-          <div
-            className="card mb-3"
-            style={{
-              background: "transparent",
-              borderColor: "white",
-            }}
-          >
-            <div className="row g-0">
-              <div className="col-md-4 d-flex flex-column justify-content-center align-items-center gap-2 p-2">
-                {results.images?.map((img, idx) => (
-                  <CustomImage src={img} key={idx} />
-                ))}
-              </div>
-              <div className="col-md-8 d-flex align-items-center">
-                <div className="card-body">
-                  <div className="card-text text-white">{results.name}</div>
+        {OurResults?.length > 0 && (
+          <div className="text-center text-white pb-5">
+            <div className="fw-bolder fs-1 py-4">Our Results</div>
+            <div className="row g-3 fs-5">
+              {OurResults.map((results, resultsIdx) => (
+                <div className="col-md-4 col-12" key={`results-${resultsIdx}`}>
+                  <div
+                    className="card mb-3"
+                    style={{
+                      background: "transparent",
+                      borderColor: "white",
+                    }}
+                  >
+                    <div className="row g-0">
+                      <div className="col-md-4 d-flex flex-column justify-content-center align-items-center gap-2 p-2">
+                        {results.images?.map((img, idx) =>
+                          img ? <CustomImage src={img} key={idx} /> : null
+                        )}
+                      </div>
+                      <div className="col-md-8 d-flex align-items-center">
+                        <div className="card-body">
+                          <div className="card-text text-white">{results.name}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
-        </div>
-      ))}
-    </div>
-  </div>
-)}
+        )}
 
 
         {clienTestimonialData?.length > 0 && (

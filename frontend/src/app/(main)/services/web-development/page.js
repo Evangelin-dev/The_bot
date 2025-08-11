@@ -85,16 +85,16 @@ const HOW_IT_WORKS = [
     name: "Website Strategy & Design",
     content:
       "We develop a strategy that aligns with your brand and target audience.",
-      icon: "/Services/Web Development/How It Works/Website-Strategy-&-Design.png"
-  
-         
+    icon: "/Services/Web Development/How It Works/Website-Strategy-&-Design.png"
+
+
   },
   {
     name: "Launch Your Stunning Website",
     content: "Attract traffic and leads with your new high-performing website",
     icon: "/Services/Web Development/How It Works/Launch-Your-Stunning-Website.png"
 
-        
+
   },
 ];
 
@@ -132,7 +132,7 @@ const WHAT_WE_OFFER = [
     content: "Beautiful, responsive, and tailored to your brand identity.",
     icon: (
       <img
-      src="/Services/Web Development/What We Offer/Custom-Website-Design.png"
+        src="/Services/Web Development/What We Offer/Custom-Website-Design.png"
 
         alt="Custom Website Design"
         className="icon_size_png m-auto"
@@ -143,21 +143,21 @@ const WHAT_WE_OFFER = [
     name: "SEO-Optimized Content Strategy",
     description:
       "Content designed to rank high on search engines and engage visitors.",
-      icon: (
-        <img
+    icon: (
+      <img
         src="/Services/Web Development/What We Offer/SEO-Optimized Content Strategy.png"
-  
-          alt="SEO-Optimized Content Strategy"
-          className="icon_size_png m-auto"
-        />
-      ),
+
+        alt="SEO-Optimized Content Strategy"
+        className="icon_size_png m-auto"
+      />
+    ),
   },
   {
     name: "Lead-Focused Designs",
     description: "Every website element is crafted to drive conversions.",
     icon: (
       <img
-      src="/Services/Web Development/What We Offer/Lead-Focused-Designs.png"
+        src="/Services/Web Development/What We Offer/Lead-Focused-Designs.png"
 
         alt="Lead-Focused Designs"
         className="icon_size_png m-auto"
@@ -168,21 +168,21 @@ const WHAT_WE_OFFER = [
     name: "Industry-Specific Expertise",
     description:
       "Stand out in your field with a website designed for your target audience.",
-      icon: (
-        <img
+    icon: (
+      <img
         src="/Services/Web Development/What We Offer/Industry-Specific-Expertise.png"
-  
-          alt="Industry-Specific Expertise"
-          className="icon_size_png m-auto"
-        />
-      ),
+
+        alt="Industry-Specific Expertise"
+        className="icon_size_png m-auto"
+      />
+    ),
   },
   {
     name: "Fast Load Times & Mobile-Friendly Design",
     description: "Perfect performance on all devices.",
     icon: (
       <img
-      src="/Services/Web Development/What We Offer/Fast-Load-Times-&-Mobile-Friendly-Design.png"
+        src="/Services/Web Development/What We Offer/Fast-Load-Times-&-Mobile-Friendly-Design.png"
 
         alt="Fast Load Times & Mobile-Friendly Design"
         className="icon_size_png m-auto"
@@ -206,16 +206,16 @@ const WHY_CHOOSE_US = [
 const OUR_RESULTS = [
   {
     name: "100+ Stunning Websites Designed",
-    images: ["/Services/Web Development/Our Results/100+-Stunning-Websites-Designed.png"] 
+    images: ["/Services/Web Development/Our Results/100+-Stunning-Websites-Designed.png"]
   },
   {
     name: "High Traffic Websites That Convert Leads",
-    images: ["/Services/Web Development/Our Results/High-Traffic-Websites-That-Convert-Leads.png"] 
+    images: ["/Services/Web Development/Our Results/High-Traffic-Websites-That-Convert-Leads.png"]
   },
   {
-    
+
     name: "Trusted by 50+ Businesses Across Industries",
-    images: ["/Services/Web Development/Our Results/Trusted-by-50+-Businesses-Across-Industries.png"] 
+    images: ["/Services/Web Development/Our Results/Trusted-by-50+-Businesses-Across-Industries.png"]
   },
 ];
 
@@ -248,6 +248,7 @@ const WebDevelopmentPage = () => {
             attract high-quality leads.
           </div>
         }
+        variant="hero"
         bgColor="linear-gradient(to top, #30cfd0 0%, #330867 100%)"
       />
       <Branding

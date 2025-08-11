@@ -1,4 +1,4 @@
-// components/WhyChooseUsSection.jsx
+"use client";
 import { useRef, useState, useEffect } from "react";
 
 const WhyChooseUsSection = ({ data = [], subtitle = "" }) => {
@@ -29,9 +29,14 @@ const WhyChooseUsSection = ({ data = [], subtitle = "" }) => {
 
   const handleScroll = () => {
     const scrollLeft = trackRef.current.scrollLeft;
-    const index = Math.round(scrollLeft / SLIDE_WIDTH.current) % data.length;
-    setActiveIndex(index);
+  
+    if (SLIDE_WIDTH.current > 0) {
+      const index = Math.round(scrollLeft / SLIDE_WIDTH.current) % data.length;
+      setActiveIndex(index);
+    }
 
+  
+  
     const maxScroll = SLIDE_WIDTH.current * data.length;
     if (scrollLeft <= 0) {
       trackRef.current.scrollLeft = maxScroll;
@@ -42,20 +47,23 @@ const WhyChooseUsSection = ({ data = [], subtitle = "" }) => {
 
   useEffect(() => {
     const track = trackRef.current;
-    SLIDE_WIDTH.current = track.offsetWidth;
-    track.scrollLeft = track.offsetWidth * data.length;
+    if (!track) return;
+    
+  
+    if (track.firstChild) {
+      SLIDE_WIDTH.current = track.firstChild.offsetWidth;
+    } else {
+      SLIDE_WIDTH.current = track.offsetWidth;
+    }
+
+    track.scrollLeft = SLIDE_WIDTH.current * data.length;
     track.addEventListener("scroll", handleScroll);
 
-    const autoScroll = setInterval(() => {
-      track.scrollTo({
-        left: track.scrollLeft + SLIDE_WIDTH.current,
-        behavior: "smooth",
-      });
-    }, 3000);
-
     return () => {
-      clearInterval(autoScroll);
-      track.removeEventListener("scroll", handleScroll);
+    
+      if (track) {
+        track.removeEventListener("scroll", handleScroll);
+      }
     };
   }, [data]);
 
@@ -72,7 +80,6 @@ const WhyChooseUsSection = ({ data = [], subtitle = "" }) => {
             className="position-absolute top-50 start-0 w-100"
             style={{ height: "2px", backgroundColor: "#999", zIndex: 0 }}
           />
-
           <div
             className="position-absolute top-50 w-100 d-flex justify-content-around"
             style={{ zIndex: 1 }}
@@ -90,7 +97,6 @@ const WhyChooseUsSection = ({ data = [], subtitle = "" }) => {
               />
             ))}
           </div>
-
           <div
             className="position-absolute top-50"
             style={{

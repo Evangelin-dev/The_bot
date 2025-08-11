@@ -1,41 +1,25 @@
-.lanuching_modal_bg {
-  /* background: linear-gradient(
-    88deg,
-    #ffa37b -11.16%,
-    #fa6bbe 46.95%,
-    #732bf7 94.89%
-  ); */
-
-  background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
-  color: white;
-  border: 1px solid white !important;
-  border-radius: 0.5rem !important;
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(248, 165, 195, 0.7); }
+  70% { transform: scale(1.03); box-shadow: 0 0 0 25px rgba(248, 165, 195, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(248, 165, 195, 0); }
 }
 
-.offer_btn {
-  padding: 0.7rem 3rem;
-  border: none;
-  outline: none;
-  z-index: 1;
-  border-radius: 0.5rem;
-  background: linear-gradient(
-    88deg,
-    #ffa37b -11.16%,
-    #fa6bbe 46.95%,
-    #732bf7 94.89%
-  );
+.btn_whatsapp_pulse {
+  background: linear-gradient(45deg, #f8a5c3, #b388eb);
   color: white;
-}
-
-.offer_button_container {
   position: fixed;
-  right: 0%;
-  top: 20%;
-  transform: rotate(90deg);
-}
-
-@media (max-width: 768px) {
-  .offer_button_container {
-    right: -15%;
-  }
+  bottom: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  z-index: 999;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  animation: pulse 2.5s infinite cubic-bezier(0.66, 0, 0, 1);
 }

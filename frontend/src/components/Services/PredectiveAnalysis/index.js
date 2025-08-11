@@ -268,7 +268,7 @@ const PredectiveAnalysis = () => {
                 <h1 className="fw-bolder fs-1 m-auto pb-2">
                   <span
                     className="pink_text"
-                    style={{ fontSize: "3rem !important;" }}
+                    style={{ fontSize: "3rem" }}
                   >
                     What Makes Us Different?
                   </span>

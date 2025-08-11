@@ -50,12 +50,7 @@ const B2BExporterVideo = () => {
             </div>
             <iframe
               src="https://www.youtube.com/embed/wkaRICh0xnA"
-              frameborder="0"
-              allowfullscreen="allowfullscreen"
-              mozallowfullscreen="mozallowfullscreen"
-              msallowfullscreen="msallowfullscreen"
-              oallowfullscreen="oallowfullscreen"
-              webkitallowfullscreen="webkitallowfullscreen"
+              allowFullScreen
               width={"100%"}
               height={"100%"}
             />
