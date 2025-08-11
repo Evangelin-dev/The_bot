@@ -3,7 +3,7 @@
 // import "slick-carousel/slick/slick-theme.css";
 
 // import { useRef } from "react";
-// import Slider from "react-slick"; // Importing react-slick
+import Slider from "react-slick"; // Importing react-slick
 const { default: PrCard } = require("@/components/Pricing/PrPeople/PrCard");
 
 const HowItWorks = ({ data = [], col = "col-md-3 col-12" }) => {
