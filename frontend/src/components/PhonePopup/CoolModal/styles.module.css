@@ -1,0 +1,71 @@
+/* --- Keyframe Animations --- */
+@keyframes slideUpFadeIn {
+  from { opacity: 0; transform: translateY(40px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* --- Main Styles --- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(10, 5, 30, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+.modal {
+  width: 90%;
+  max-width: 550px;
+  background-color: #1a163a;
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(258, 50%, 30%, 0.3) 0px, transparent 50%),
+    linear-gradient(135deg, #2a265f 0%, #1a163a 100%);
+  color: white;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+  animation: slideUpFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.closeButton {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 200;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.closeButton:hover {
+  transform: rotate(90deg);
+}
+
+.body {
+  padding: 2rem 1.5rem 2.5rem 1.5rem;
+}
+
+.contentWrapper {
+  text-align: left;
+  margin-bottom: 2rem;
+}

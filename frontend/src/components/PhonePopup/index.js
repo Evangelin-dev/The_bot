@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./styles.module.css";
 import OutLinedButton from "../custom/OutLinedButton";
-import ScratchableModal from "./ScratchModal";
+import CoolModal from "./CoolModal"; // ✅ THE FIX: Import the new component
 
 const CONTACT_INFO = {
   sales: "+91 9892969658",
@@ -15,16 +15,9 @@ const PhonePopUp = () => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // The auto-open logic is correctly commented out.
 
-  // auto open logic 
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setIsModalOpen(true);
-  //   }, 2000);
-  //   return () => clearTimeout(timer);
-  // }, []);
-
-   const connectButton = (
+  const connectButton = (
     <div onClick={() => router.push("/contact-us")}>
       <OutLinedButton name={"Connect With Us"} />
     </div>
@@ -32,16 +25,17 @@ const PhonePopUp = () => {
 
   return (
     <>
-      <span  className={styles.btn_whatsapp_pulse} onClick={() => setIsModalOpen(true)}>
+      <span className={styles.btn_whatsapp_pulse} onClick={() => setIsModalOpen(true)}>
         <i className="fa fa-phone cursor-pointer"></i>
       </span>
 
-      <ScratchableModal 
+      {/* ✅ THE FIX: Use the new CoolModal component */}
+      <CoolModal 
         show={isModalOpen} 
         onClose={() => setIsModalOpen(false)}
         actionButton={connectButton}
       >
-      <ul>
+        <ul>
           <li>
             Sales Enquiry: <a href={`tel:${CONTACT_INFO.sales}`}>{CONTACT_INFO.sales}</a>
           </li>
@@ -52,7 +46,7 @@ const PhonePopUp = () => {
             Email: <a href={`mailto:${CONTACT_INFO.email}`}>{CONTACT_INFO.email}</a>
           </li>
         </ul>
-      </ScratchableModal>
+      </CoolModal>
     </>
   );
 };
