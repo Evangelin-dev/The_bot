@@ -49,7 +49,7 @@ const HowItMakesCarousel = ({ data }) => {
             <div className="carousel-slide" key={idx}>
               <div className="carousel-card">
                 <PrCard
-                  icon={<CustomImage src={item.icon} className="icon_size_png m-auto" />}
+                  icon={item.icon}
                   name={item.name}
                   description={item.content}
                 />

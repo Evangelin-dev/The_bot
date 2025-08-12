@@ -9,7 +9,7 @@ import FaQ from "../FAQ";
 import BookYourConsultation from "@/components/custom/BookYourConsultation";
 import HowItMakesCarousel from "@/components/How-it-works";
 import WhyChooseUsCarousel from "@/components/Why-choose-us";
-    
+
 
 const LEAD_GENERATION_PROCESS = [
   {
@@ -66,31 +66,51 @@ const WHY_CHOOSE_US = [
     name: "High-Quality Leads",
     content:
       "We’ve successfully converted leads for both B2B and B2C businesses across industries.",
-      icon: "/Services/Lead Generation/Why Choose Us/High-Quality Leads.png"
-  
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 text-purple-700">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2" />
+        <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth={1.5} />
+      </svg>
+    )
+
   },
   {
     name: "Data-Driven Approach",
     content:
       "Our strategies are backed by analysis of customer behavior, ensuring precision.",
-      icon: "/Services/Lead Generation/Why Choose Us/Data-Driven-Approach.png"
-  
-         
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 text-purple-700">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 3v18h18" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M7 13l3-3 4 4 5-5" />
+      </svg>
+    )
+
+
   },
   {
     name: "Customized Plans",
     content:
       "Every business is unique. We craft personalized strategies for maximum impact.",
-      icon:"/Services/Lead Generation/Why Choose Us/Customized-Plans.png"
-  
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 text-purple-700">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 3v18h18" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M7 13l3-3 4 4 5-5" />
+      </svg>
+    )
+
   },
   {
     name: "Proven Success",
     content:
       "We’ve helped businesses not just generate leads but convert them into paying customers.",
-      icon:"/Services/Lead Generation/Why Choose Us/Proven Success.png"
-  
-       
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 text-purple-700">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 3v18h18" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M7 13l3-3 4 4 5-5" />
+      </svg>
+    )
+
+
   },
 ];
 
@@ -99,26 +119,70 @@ const HOW_IT_WORKS = [
     name: "Book a Free Audit",
     content:
       "Let us analyze your current social media presence and lead generation methods.",
-      icon: "/Services/Lead Generation/How It Works/Book-a-Free-Audit.png"
-  
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 48 48"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        className="w-12 h-12 m-auto text-purple-700"
+      >
+        <rect x="6" y="10" width="36" height="28" rx="4" ry="4" stroke="currentColor" />
+        <line x1="6" y1="16" x2="42" y2="16" stroke="currentColor" />
+        <line x1="16" y1="4" x2="16" y2="10" stroke="currentColor" />
+        <line x1="32" y1="4" x2="32" y2="10" stroke="currentColor" />
+        <path d="M18 26l4 4 8-8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
   },
   {
     name: "Get a Customized Plan",
     content:
       "Receive a tailored strategy designed to attract high-quality leads.",
-      icon: "/Services/Lead Generation/How It Works/Get-a-Customized-Plan.png"
-  
-      
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 48 48"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        className="w-12 h-12 m-auto text-purple-700"
+      >
+        <rect x="12" y="8" width="24" height="32" rx="3" ry="3" stroke="currentColor" />
+        <rect x="18" y="4" width="12" height="6" rx="2" ry="2" fill="currentColor" />
+        <line x1="18" y1="20" x2="30" y2="20" stroke="currentColor" />
+        <line x1="18" y1="26" x2="30" y2="26" stroke="currentColor" />
+        <line x1="18" y1="32" x2="26" y2="32" stroke="currentColor" />
+      </svg>
+    ),
   },
   {
     name: "Start Generating Results",
     content:
       "Watch as your business attracts and converts the right customers!",
-      icon: "/Services/Lead Generation/How It Works/Start Generating Results.png"
-  
-       
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 48 48"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        className="w-12 h-12 m-auto text-purple-700"
+      >
+        <path
+          d="M24 4c4 4 8 8 8 14 0 8-8 16-8 16s-8-8-8-16c0-6 4-10 8-14Z"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path d="M20 34c0 4-2 8-4 10 3 0 6-2 8-4 2 2 5 4 8 4-2-2-4-6-4-10" stroke="currentColor" />
+        <circle cx="24" cy="18" r="3" stroke="currentColor" />
+      </svg>
+    ),
   },
 ];
+
 
 const CLIENT_TESTIMONIAL = [
   {
@@ -225,18 +289,18 @@ const LeadGeneration = () => {
         </div>
       </div>
       <div className="py-5">
-  <div className={`${styles.lead_generation_title} lh-sm`}>
-    <h1 className="text-center fw-bolder fs-1 w-75 m-auto pb-5">
-      <span className="text-white">Why Choose Us?</span>
-    </h1>
-    <WhyChooseUsCarousel data={WHY_CHOOSE_US}  />
-  </div>
-</div>
+        <div className={`${styles.lead_generation_title} lh-sm`}>
+          <h1 className="text-center fw-bolder fs-1 w-75 m-auto pb-5">
+            <span className="text-white">Why Choose Us?</span>
+          </h1>
+          <WhyChooseUsCarousel data={WHY_CHOOSE_US} />
+        </div>
+      </div>
 
       <div>
         <div className="d-flex g-5 align-items-center">
           <div className={styles.image_container}>
-            <CustomImage src={"/Services/Lead Generation/Who-Is-This-Service-For.png"} />
+            <CustomImage src={"/Leads/Who-Is-This-Service-For.png"} />
           </div>
           <div
             className={`text-white ${styles.lead_generation_container} ps-5`}
@@ -279,13 +343,10 @@ const LeadGeneration = () => {
       </div>
 
       <div className="py-5">
-  <div className={`${styles.lead_generation_title} lh-sm`}>
-    <h1 className="text-center fw-bolder fs-1 w-75 m-auto pb-5">
-      <span className="text-white">How It Works?</span>
-    </h1>
-   <HowItMakesCarousel data={HOW_IT_WORKS}  />
-  </div>
-</div>
+        <div className={`${styles.lead_generation_title} lh-sm`}>
+          <HowItMakesCarousel data={HOW_IT_WORKS} />
+        </div>
+      </div>
 
 
       <ClientTestimonial data={CLIENT_TESTIMONIAL} />

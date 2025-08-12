@@ -7,27 +7,14 @@ import CustomImage from "@/components/custom/Image";
 import ClientTestimonial from "@/components/ClientTestimonial";
 import FaQ from "../FAQ";
 
-
-
+// Re-importing the carousel for the second section
 import WhyChooseUsCarousel from "@/components/Why-choose-us";
-// Import the client-only slider
-
-
-
-
-
 
 const STRATEGIES = [
   {
     name: "Churn Prediction",
-    description:"Predict customer churn and take effective actions to retain customers before it is too late.",
-    // icon: (
-    //   <img
-    //     src="/bulb.png"
-    //     alt="Automation-&-Dashboards"
-    //     style={{ width: "16px", height: "16px" }}
-    //   />
-    // ),
+    description:
+      "Predict customer churn and take effective actions to retain customers before it is too late.",
   },
   {
     name: "Recommendation System",
@@ -86,10 +73,7 @@ const SERVICES = [
         <li>Build trust and credibility with your target audience.</li>
       </ul>
     ),
-    icon: 
-      "/Services/Predective Analysis/What’s Included in Our Predictive Analysis Service/Brand-Positioning.png",
-
-      
+    icon: "/Services/Predective Analysis/What’s Included in Our Predictive Analysis Service/Brand-Positioning.png",
   },
   {
     name: "Sales Funnel Execution",
@@ -100,10 +84,7 @@ const SERVICES = [
         <li>Optimize and automate processes to boost efficiency.</li>
       </ul>
     ),
-    icon: 
-      "/Services/Predective Analysis/What’s Included in Our Predictive Analysis Service/Sales Funnel Execution.png"
-
-  
+    icon: "/Services/Predective Analysis/What’s Included in Our Predictive Analysis Service/Sales Funnel Execution.png",
   },
 ];
 
@@ -112,33 +93,23 @@ const WHY_CHOOSE_SERVICES = [
     name: "Data-Driven Approach",
     content:
       "Every strategy is backed by detailed data analysis, ensuring accuracy and efficiency.",
-      icon: 
-        "/Services/Predective Analysis/Why Choose Our Predictive Analysis Service/Data-Driven-Approach.png"
-  
-       
+    icon: "/Services/Predective Analysis/Why Choose Our Predictive Analysis Service/Data-Driven-Approach.png",
   },
   {
     name: "Tailored for Startups",
     content:
       "We specialize in helping startups navigate uncertainty and scale confidently.",
-      icon: 
-        "/Services/Predective Analysis/Why Choose Our Predictive Analysis Service/Tailored-for-Startups.png"
-  
+    icon: "/Services/Predective Analysis/Why Choose Our Predictive Analysis Service/Tailored-for-Startups.png",
   },
   {
     name: "Fail-Proof Strategies",
     content: "Our insights minimize risks and maximize success.",
-    icon: 
-      "/Services/Predective Analysis/Why Choose Our Predictive Analysis Service/Fail-Proof-Strategies.png"
-
-     
+    icon: "/Services/Predective Analysis/Why Choose Our Predictive Analysis Service/Fail-Proof-Strategies.png",
   },
   {
     name: "Expert Guidance",
     content: "Leverage our expertise to fast-track your growth.",
-    icon: "/Services/Predective Analysis/Why Choose Our Predictive Analysis Service/Expert Guidance.png"
-
-  
+    icon: "/Services/Predective Analysis/Why Choose Our Predictive Analysis Service/Expert Guidance.png",
   },
 ];
 const PredectiveAnalysis = () => {
@@ -156,12 +127,12 @@ const PredectiveAnalysis = () => {
             {STRATEGIES.map((item, itemIdx) => {
               return (
                 <InlineCommonCard
-      key={`pricing-column-${itemIdx}`}
-      name={item.name}
-      description={item.description}
-      icon={item.icon} // 👈 Pass the icon here
-      column="col-md-4"
-    />
+                  key={`pricing-column-${itemIdx}`}
+                  name={item.name}
+                  description={item.description}
+                  icon={item.icon}
+                  column="col-md-4"
+                />
               );
             })}
           </div>
@@ -226,38 +197,60 @@ const PredectiveAnalysis = () => {
         </div>
       </div>
 
+      {/* === THIS SECTION IS NOW STATIC CARDS === */}
       <div className="pb-5">
-  <div className={`${styles.predictive_analysis_title} lh-sm`}>
-    <h1 className="text-center fw-bolder fs-1 w-75 m-auto pb-5">
-      <span className="text-white">What’s Included in</span>
-      <span className="pink_text"> Our Predictive Analysis Service?</span>
-    </h1>
-    <WhyChooseUsCarousel
-      data={SERVICES} />
-  </div>
-</div>
-
-<div className="pb-5">
-      <div
-        className={`${styles.predictive_analysis_title} lh-sm ${styles.predictive_anlys_why_choose_wrapper}`}
-      >
-         
-        <h1 className="text-center fw-bolder fs-1 w-75 m-auto pb-5">
-          <span className="text-white">Why Choose Our </span>
-          <span className="pink_text"> Predictive Analysis Service?</span>
-        </h1>
-        <WhyChooseUsCarousel
-          data={WHY_CHOOSE_SERVICES}
-          />
+        <div className={`${styles.predictive_analysis_title} lh-sm`}>
+          <h1 className="text-center fw-bolder fs-1 w-75 m-auto pb-5">
+            <span className="text-white">What’s Included in</span>
+            <span className="pink_text">
+              {" "}
+              Our Predictive Analysis Service?
+            </span>
+          </h1>
+          <div className="row g-4 justify-content-center">
+            {SERVICES.map((service, index) => (
+              <div className="col-lg-4 col-md-6" key={index}>
+                <div className="p-4 border rounded-3 h-100 d-flex flex-column text-white">
+                  <div className="d-flex align-items-center mb-3">
+                    <CustomImage
+                      src={service.icon}
+                      alt={service.name}
+                      width={60}
+                      height={60}
+                      style={{ objectFit: "contain" }}
+                    />
+                    <h4 className="fw-bold ms-3 mb-0">{service.name}</h4>
+                  </div>
+                  <div className="text-white-50">{service.content}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
+
+      {/* === THIS SECTION IS BACK TO THE ORIGINAL CAROUSEL === */}
+      <div className="pb-5">
+        <div
+          className={`${styles.predictive_analysis_title} lh-sm ${styles.predictive_anlys_why_choose_wrapper}`}
+        >
+          <h1 className="text-center fw-bolder fs-1 w-75 m-auto pb-5">
+            <span className="text-white">Why Choose Our </span>
+            <span className="pink_text"> Predictive Analysis Service?</span>
+          </h1>
+          <WhyChooseUsCarousel data={WHY_CHOOSE_SERVICES} />
+        </div>
+      </div>
+
       <div className="pb-5">
         <div
           className={`${styles.predictive_analysis_title} lh-sm text-center text-white`}
         >
           <div className="d-flex pt-5 text-start">
             <div className={styles.why_service_for_img}>
-              <CustomImage src={"/Services/Predective Analysis/What-Makes-Us-Different.png"} />
+              <CustomImage
+                src={"/Services/Predective Analysis/What-Makes-Us-Different.png"}
+              />
             </div>
 
             <div
@@ -266,10 +259,7 @@ const PredectiveAnalysis = () => {
             >
               <div>
                 <h1 className="fw-bolder fs-1 m-auto pb-2">
-                  <span
-                    className="pink_text"
-                    style={{ fontSize: "3rem" }}
-                  >
+                  <span className="pink_text" style={{ fontSize: "3rem" }}>
                     What Makes Us Different?
                   </span>
                 </h1>
@@ -331,7 +321,9 @@ const PredectiveAnalysis = () => {
               </div>
             </div>
             <div className={styles.why_service_for_img}>
-            <CustomImage src={"/Services/Predective Analysis/Who-Should-Use-This-Service.png"} />
+              <CustomImage
+                src={"/Services/Predective Analysis/Who-Should-Use-This-Service.png"}
+              />
             </div>
           </div>
         </div>

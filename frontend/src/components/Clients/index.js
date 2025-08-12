@@ -49,7 +49,7 @@ const Clients = () => {
   return (
     <>
       <div className="pt-5 text-white fw-bolder fs-1 px-4 text-center pb-3 fadeIn">
-        Out Clients
+        Our Clients
       </div>
       <div
         className={`d-flex overflow-auto  gap-5 hide-scroll`}
