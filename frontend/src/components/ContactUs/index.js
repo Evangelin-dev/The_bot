@@ -39,11 +39,11 @@ const ContactUs = () => {
             <div className="fs-6 fw-normal">
               <div className="">
                 <i className="fa fa-phone pe-4" aria-hidden="true"></i>
-                <span>Sales Enquiry :- +91 9892969658</span>
+                <span>Sales Enquiry :- +91 9892969508</span>
               </div>
               <div>
                 <i className="fa fa-phone pe-4 pt-2" aria-hidden="true"></i>
-                <span>Support :- +91 9892969658</span>
+                <span>Support :- +91 7506539771</span>
               </div>
               <div className="py-2">
                 <i className="fa fa-envelope pe-4" aria-hidden="true"></i>

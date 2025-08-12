@@ -3,11 +3,11 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./styles.module.css";
 import OutLinedButton from "../custom/OutLinedButton";
-import CoolModal from "./CoolModal"; // ✅ THE FIX: Import the new component
+import CoolModal from "./CoolModal";
 
 const CONTACT_INFO = {
-  sales: "+91 9892969658",
-  support: "+91 9892969658",
+  sales: "+91 9892969508",
+  support: "+91 7506539771",
   email: "harry@thebot.agency",
 };
 
@@ -15,7 +15,7 @@ const PhonePopUp = () => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // The auto-open logic is correctly commented out.
+
 
   const connectButton = (
     <div onClick={() => router.push("/contact-us")}>
