@@ -33,7 +33,7 @@ const MvpLandingPageContent = () => {
       <section className={styles.heroSection}>
         <div className={styles.heroContent}>
           <h1 className={styles.heroTitle}>
-            <span>15-Day MVP Delivery</span>
+            <span>App in 15 days</span>
           </h1>
           <p className={styles.heroSubtitle}>
             Build, test, and launch a production‑ready MVP. We deliver apps, automations, and migrations—fast, business‑focused, and ready for customers.
