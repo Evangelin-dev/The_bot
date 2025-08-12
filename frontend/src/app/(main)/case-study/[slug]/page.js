@@ -34,7 +34,7 @@ const CaseStudyDetails = async ({ params }) => {
 
   return (
     <>
-      <div className="container mt-5">
+      <div className="container mt-5 bg-white">
         <div className={`${styles.blog_page_bg} p-5`}>
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">

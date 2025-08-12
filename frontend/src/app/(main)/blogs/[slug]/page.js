@@ -34,7 +34,7 @@ const BlogDetailsPage = async ({ params }) => {
 
   return (
     <>
-      <div className="container mt-5">
+      <div className="container mt-5 bg-white">
         <div className={`${styles.blog_page_bg} p-5`}>
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -51,7 +51,7 @@ const BlogDetailsPage = async ({ params }) => {
               <div className={styles.blog_page_wrapper}>
                 <CustomImage src={res.data.image} />
               </div>
-              <h1 className="py-4 text-uppercase fw-bold text-center fadeIn text-capitalize">
+              <h1 className="py-4 text-uppercase fw-bold bg-white text-center fadeIn text-capitalize">
                 {res.data.title}
               </h1>
               <div
