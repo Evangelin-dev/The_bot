@@ -108,7 +108,7 @@ const MvpLandingPageContent = () => {
           </div>
         </section>
         <section className={styles.finalCtaSection}>
-          <h2 className={styles.sectionTitle}>Ready to Launch Your MVP?</h2>
+          <h2 className={styles.sectionTitle}>Ready to Launch Your App in 15 days?</h2>
           <p className={styles.sectionSubtitle}>
             Don't lose another month waiting. Let's get your business ecosystem live in just 15 days.
           </p>
