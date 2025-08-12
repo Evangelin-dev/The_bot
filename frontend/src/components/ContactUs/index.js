@@ -52,8 +52,7 @@ const ContactUs = () => {
               <div>
                 <i className="fa fa-map-marker pe-4" aria-hidden="true"></i>
                 <span>
-                  Aaradhya Square B Wing 1005, Naidu Colony, Ghatkopar East
-                  Mumbai 400075.
+                 Addresses : Mumbai , Chennai
                 </span>
               </div>
             </div>

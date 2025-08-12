@@ -95,7 +95,7 @@ const WHAT_WE_OFFER = [
     link:"/services/web-development" 
   },
   {
-    name: "Tech Developmentt",
+    name: "Tech Development",
     description:
       "Tailored solutions to automate your processes and save operational costs.",
       link:"/services/tech-development" 
