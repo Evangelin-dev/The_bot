@@ -10,9 +10,10 @@ import CustomImage from "@/components/custom/Image";
 import style from "../../components/ClientTestimonial/styles.module.css";
 import WhyChooseUsCarousel from "@/components/Why-choose-us";
 import VentureBackedPartners from "@/components/VentureBackedPartners";
-
+import AboutUsTyping from "../../components/AboutSection/AboutUsTyping";
 import HowItMakesCarousel from "@/components/How-it-works";
-
+import AnimatedServiceGrid from "@/components/AnimatedCardGrid";
+import styles from './page.module.css';
 // const fetchPosts = async () => {
 //   const res = await fetch("https://restcountries.com/v3.1/all");
 //   const data = await res.json();
@@ -52,80 +53,31 @@ const settings = {
   ],
 };
 
-const WHAT_WE_OFFER = [
-  {
-    name: "Predictive Market Analysis",
-    description:
-      "Stay ahead of the curve with data-driven insights that guide your next big move.",
-      link: "/services/predictive-analysis"
-
-  },
-  {
-    name: "Marketing Subscription",
-    description:
-      "Ongoing support to manage your marketing efforts effortlessly",
-      link:"/services/lead-generation" 
-  },
-  {
-    name: "Predictive Marketing Strategy",
-    description: "Fool-proof strategies backed by data to guarantee results",
-    link:"/services/marketing-strategies" 
-  },
-  {
-    name: "SEO",
-    description:
-      "Rank higher, attract more, and convert better with search engine optimization.",
-      link:"/services/seo" 
-  },
-  {
-    name: "Social Media Management",
-    description:
-      "Create viral content and engage your audience across platforms.",
-      link:"/services/social-media-management" 
-  },
-  {
-    name: "Branding",
-    description:
-      "Compelling brand stories that resonate with your target audience.",
-      link:"/services/branding" 
-  },
-  {
-    name: "Web Development",
-    description: "Stunning websites that drive traffic and convert leads",
-    link:"/services/web-development" 
-  },
-  {
-    name: "Tech Development",
-    description:
-      "Tailored solutions to automate your processes and save operational costs.",
-      link:"/services/tech-development" 
-  },
-];
 
 const WHY_CHOOSE_US = [
   {
     name: "Proven Track Record",
     content: "Over 50+ brands scaled with our expertise.",
     icon: "/home/why-choose-us/Proven-Track-Record.png"
-     
+
   },
   {
     name: "Guaranteed Results",
     content: "200% ROAS achieved for our clients.",
     icon: "/home/why-choose-us/Guaranteed-Results.png"
-      
+
   },
   {
     name: "Data-Driven Approach",
     content: "Predictive strategies that work from Day 1.",
     icon: "/home/why-choose-us/Data-Driven-Approach.png"
-      
+
   },
   {
     name: "Customized Solutions",
     content: "Tailored strategies that align with your unique goals.",
     icon: "/home/why-choose-us/Customized-Solutions.png"
-    
+
   },
 ];
 
@@ -148,66 +100,60 @@ const HOW_IT_WORKS = [
     content:
       "We start by understanding your industry, competitors, and audience.",
     icon: "/home/how-it-works/Market-Analysis.png"
-       
+
   },
   {
     name: "Predictive Strategy",
     content:
       "Using data-driven insights, we create a fool-proof plan tailored to your needs.",
     icon: "/home/how-it-works/Predictive-Strategy.png"
-      
+
   },
   {
     name: "Execution",
     content: "Our team ensures flawless execution and measurable results",
     icon: "/home/how-it-works/Execution.png"
-     ,
+    ,
   },
 ];
+
+// src/app/(main)/page.js
+
+// ... (keep all your imports and data constants at the top)
+
+// src/app/(main)/page.js
+
+// ... (keep all your imports and data constants at the top)
 
 const HomePage = async () => {
   return (
     <>
       <Banner />
-      <div className="container">
-        <div className={`${style.testimonial_wrapper}`}>
-          <h1 className="pink_text pb-4">About Us</h1>
-          <div className={`d-flex overflow-auto gap-5 hide-scroll`}>
-            <div
-              className={`${style.testimonial_content} d-flex`}
-              style={{ flexDirection: "column" }}
-            >
-              <div
-                className={`${style.testimonial_msg} fadeIn`}
-                style={{ marginBottom: "auto" }}
-              >
-                At <span className="fw-bolder">The Bot</span>, we specialize in
-                crafting fool-proof marketing strategies that deliver results
-                from Day 1. Using a predictive, data-driven approach, we help
-                businesses achieve sustainable growth. With over 50+ brands in
-                our portfolio, we’ve generated 200% ROAS for our clients by
-                crafting compelling stories and executing them flawlessly.
-              </div>
-            </div>
-          </div>
+
+      {/* The master container for the whole section */}
+      <div className={styles.unifiedBackgroundSection}>
+
+        {/* --- Top part with the GALAXY background --- */}
+        <div className={styles.galaxyWrapper}>
+          <AboutUsTyping />
+          <AnimatedServiceGrid />
         </div>
+
+        {/* --- Bottom part with the WAVE background --- */}
+        <div className={styles.waveWrapper}>
+          <MarketingSubscriptionCard />
+        </div>
+
       </div>
 
-      <OurExpertArticle data={WHAT_WE_OFFER} />
-      <MarketingSubscriptionCard />
-
+      {/* These components will NOT have the special background */}
       <div className="container fadeIn">
-      <WhyChooseUsCarousel data={WHY_CHOOSE_US}/>
-      <VentureBackedPartners />
-
-
-
+        <VentureBackedPartners />
+        <WhyChooseUsCarousel data={WHY_CHOOSE_US} />
         <ClientTestimonial data={CLIENT_TESTIMONIAL} />
-      
         <WhyChooseUsCarousel data={HOW_IT_WORKS} />
       </div>
 
-      
       <LogoVideoComponent />
       <Clients />
     </>

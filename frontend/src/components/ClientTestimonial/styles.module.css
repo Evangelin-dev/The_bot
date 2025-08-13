@@ -1,32 +1,102 @@
 .testimonial_wrapper {
+  position: relative;
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 0 20px 0 rgba(18, 18, 18, 0.05);
   background: rgba(255, 255, 255, 0.03);
   border-radius: 1rem;
-  padding: 3%;
   color: white;
+  padding: 3rem 1rem 5rem 3rem;
+  padding-bottom: 0px 0px 0px 1rem 0px;
+}
+
+.testimonial_viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  
+  /* --- THE FIX (Part 2) --- */
+  /* This is the new, smaller height for PC screens */
+  height: 220px; 
+}
+
+.testimonial_slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .testimonial_msg {
   font-size: 1.5rem;
+  line-height: 1.6;
+  font-style: italic;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  /* Add a little padding at the bottom to ensure space */
+  padding-bottom: 1rem;
 }
 
 .testimonial_author {
-  font-size: 1.5rem;
-  font-weight: 100;
+  font-size: 1.25rem;
+  font-weight: 300;
+  text-align: right;
+  color: #c4c4c4;
+  /* Remove margin-top to let flexbox handle alignment */
 }
 
-.testimonial_content {
-  width: calc(95% - 30px) !important;
-  min-width: calc(95% - 30px) !important;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-  scroll-behavior: smooth;
+/* --- Arrow Styling --- */
+.nav_button {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  /* --- THE FIX (Part 3) --- */
+  /* Position the buttons within the new bottom padding area */
+  bottom: 2rem;
 }
 
+.nav_button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.prev {
+  right: 80px;
+}
+
+.next {
+  right: 30px;
+}
+
+/* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
-  .testimonial_content {
-    width: calc(100% - 30px) !important;
-    min-width: calc(100% - 30px) !important;
+  .testimonial_wrapper {
+    /* Adjust padding for mobile */
+    padding: 2rem 2rem 5rem 2rem;
+  }
+
+  .testimonial_viewport {
+    /* The user liked the mobile height, so we keep it here */
+    height: 320px;
+  }
+
+  .testimonial_msg {
+    font-size: 1.2rem;
+  }
+
+  .testimonial_author {
+    font-size: 1.1rem;
   }
 }

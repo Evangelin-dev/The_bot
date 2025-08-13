@@ -1,0 +1,45 @@
+@keyframes panWave {
+  0% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: 0% center;
+  }
+}
+
+.unifiedBackgroundSection {
+  background-color: #121212;
+  overflow: hidden;
+}
+
+.galaxyWrapper {
+  background: url("/darkest-galaxy.png") no-repeat center top;
+  background-size: cover;
+  padding: 5rem 0;
+}
+
+.waveWrapper {
+  position: relative;
+  background-image: url("/3-days-website/wave-background.jpg");
+  background-repeat: no-repeat;
+  
+  background-size: 150% auto; 
+  
+  animation: panWave 30s infinite linear;
+
+  filter: hue-rotate(-90deg) brightness(0.9);
+  
+  padding: 5rem 0;
+  margin-top: -5rem; 
+  
+  isolation: isolate; 
+}
+
+.waveWrapper > * {
+    position: relative;
+    z-index: 2;
+    filter: hue-rotate(90deg) brightness(1.11);
+}

@@ -8,7 +8,7 @@
   color: white;
 }
 
-.subscription_wrapper:hover {
+.subscription_wrapper:hover { 
   cursor: pointer;
   background: linear-gradient(180deg, #d8d7f4 0, #ffedf7 100%);
   color: black !important;
@@ -41,3 +41,38 @@
   width: 50%;
   color: white;
 }
+
+/* Add these new rules to your existing CSS file */
+
+/* 1. Define the animation */
+@keyframes cardFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 2. Create a wrapper class to apply the animation */
+.card_animation_wrapper {
+  /* Apply the animation */
+  animation-name: cardFadeInUp;
+  animation-duration: 0.6s;
+  
+  /* This ensures the animation respects the delay and doesn't just pop in */
+  animation-fill-mode: backwards;
+  
+  /* A nice easing function */
+  animation-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Keep your other styles like .subscription_container, etc. */
+.subscription_container {
+  padding-top: 8%;
+  padding-bottom: 5%;
+}
+
+/* ... (rest of your styles) ... */

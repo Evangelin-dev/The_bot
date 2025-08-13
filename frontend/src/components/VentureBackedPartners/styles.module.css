@@ -1,0 +1,113 @@
+.auroraWrapper {
+  position: relative;
+  color: white;
+  padding: 6rem 0;
+  margin-bottom: 5rem;
+  background-color: #0f0f1c;
+  overflow: hidden;
+  border-radius: 1.5rem;
+}
+
+.spotlight {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(168, 33, 141, 0.2), transparent 60%);
+  filter: blur(100px);
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+  transition: all 0.2s ease-out;
+}
+
+.mainHeading {
+  font-size: 3rem;
+  font-weight: 700;
+  z-index: 2;
+  position: relative;
+}
+
+.gradientText {
+  background: linear-gradient(135deg, #FF6AC2, #7AB2FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.statsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  z-index: 2;
+  position: relative;
+}
+
+@keyframes breathe {
+  0%, 100% { box-shadow: 0 0 20px rgba(122, 178, 255, 0.1); }
+  50% { box-shadow: 0 0 35px rgba(255, 106, 194, 0.15); }
+}
+
+.statCard {
+
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  padding: 2.5rem 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  width: 300px;
+  
+
+  animation: breathe 4s ease-in-out infinite;
+
+  transition: all 0.3s ease;
+}
+
+.statCard:hover {
+  animation-play-state: paused;
+  transform: translateY(-10px) scale(1.03);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.iconWrapper {
+  display: inline-flex;
+  padding: 1.5rem;
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, rgba(255, 106, 194, 0.1), rgba(122, 178, 255, 0.1));
+  color: #fff;
+}
+
+.statTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.statSubtitle {
+  font-size: 1rem;
+  color: #a1a1a9;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 992px) {
+  .statsContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainHeading {
+    font-size: 2.2rem;
+  }
+  .statCard {
+    width: 100%;
+    max-width: 350px;
+  }
+}

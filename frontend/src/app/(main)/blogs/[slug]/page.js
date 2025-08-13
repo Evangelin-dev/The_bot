@@ -37,11 +37,11 @@ const BlogDetailsPage = async ({ params }) => {
       <div className="container mt-5 bg-white">
         <div className={`${styles.blog_page_bg} p-5`}>
           <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item">
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item">
                 <a href="/blogs">Blogs</a>
               </li>
-              <li class="breadcrumb-item active" aria-current="page">
+              <li className="breadcrumb-item active" aria-current="page">
                 {slug}
               </li>
             </ol>

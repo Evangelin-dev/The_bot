@@ -1,40 +1,15 @@
-import CustomSubscriptionCard from "../custom/CustomSubscriptionCard";
+// Remove the old card import
+// import CustomSubscriptionCard from "../custom/CustomSubscriptionCard";
+
+// Import the new card component
+import NewServiceCard from "./Card/NewServiceCard";
+
 import CustomImage from "../custom/Image";
 import styles from "./styles.module.css";
+// Link is now used inside the card, so it's not strictly needed here
+// but we'll keep it in case you need it elsewhere.
 import Link from "next/link";
 
-
-const BitCoin = () => {
-  return <i className="fa fa-btc" aria-hidden="true"></i>;
-};
-
-const SaaS = () => {
-  return <i className="fa fa-sitemap" aria-hidden="true"></i>;
-};
-
-const B2B = () => {
-  return <i className="fa fa-briefcase" aria-hidden="true"></i>;
-};
-
-const Game = () => {
-  return <i className="fa fa-gamepad" aria-hidden="true"></i>;
-};
-
-const Software = () => {
-  return <i className="fa fa-code" aria-hidden="true"></i>;
-};
-
-const Small = () => {
-  return <i className="fa fa-compress" aria-hidden="true"></i>;
-};
-
-const StartUp = () => {
-  return <i className="fa fa-space-shuttle" aria-hidden="true"></i>;
-};
-
-const Dollar = () => {
-  return <i className="fa fa-usd" aria-hidden="true"></i>;
-};
 
 const DATA = [
   {
@@ -58,7 +33,7 @@ const DATA = [
     ),
     description:
       "Achieve unmatched growth with predictive analysis and branding.",
-      link: "/industries/b2b-exporter",
+    link: "/industries/b2b-exporter",
   },
   {
     name: "Logistics Businesses",
@@ -70,7 +45,7 @@ const DATA = [
     ),
     description:
       "Optimize processes with tech development and marketing strategies.",
-      link: "/industries/logistics-businesses",
+    link: "/industries/logistics-businesses",
   },
   {
     name: "B2C Businesses",
@@ -104,7 +79,7 @@ const DATA = [
     ),
     description:
       "Establish your brand and craft a winning strategy without breaking the bank",
-      link: "/industries/start-up",
+    link: "/industries/start-up",
   },
 ];
 
@@ -121,14 +96,21 @@ const MarketingSubscriptionCard = () => {
       <div className="row">
         {DATA.map((marketing, marketingIdx) => {
           return (
-            <CustomSubscriptionCard
-            
-              name={marketing.name}
-              link={marketing.link}
-              icon={marketing.icon}
-              description={marketing.description}
+            // THIS IS THE MODIFIED PART
+            <div
               key={`marketingIdx-${marketingIdx}`}
-            />
+              className={`col-lg-4 col-md-6 mb-4 d-flex ${styles.card_animation_wrapper}`}
+              // This inline style creates the staggered delay!
+              style={{ animationDelay: `${marketingIdx * 120}ms` }}
+            >
+              <NewServiceCard
+                name={marketing.name}
+                link={marketing.link}
+                icon={marketing.icon}
+                description={marketing.description}
+              />
+            </div>
+            // END OF MODIFIED PART
           );
         })}
       </div>
