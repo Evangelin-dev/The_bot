@@ -8,6 +8,7 @@ import ContactUs from "@/components/ContactUs";
 import LaunchingModal from "@/components/LaunchingModal";
 import PhonePopUp from "@/components/PhonePopup";
 import OfferPopUp from "@/components/OfferPopup";
+import ChatbotEmbed from "../../components/ChatBotEmb";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -129,6 +130,7 @@ fbq('track', 'PageView');
           <ContactUs />
           <PhonePopUp />
           <Footer />
+          <ChatbotEmbed/>
         </div>
         <LaunchingModal />
         <Script src="https://code.jquery.com/jquery-2.1.3.min.js"></Script>
