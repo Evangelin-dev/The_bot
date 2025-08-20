@@ -1,21 +1,22 @@
 "use client";
 
+import { useEffect } from "react";
 import styles from "./styles.module.css";
 import CustomImage from "../custom/Image";
 import BookDemoBtn from "../BookDemoBtn";
-import { useEffect, useRef } from "react";
-import Clients from "../Clients";
 
 const Banner = () => {
   useEffect(() => {
+    // Background gradient
     document.body.style.setProperty(
       "--bg-color",
       "linear-gradient(90deg, #04041e 5%,rgb(35, 35, 89) 24%, #000000 100%)"
     );
   }, []);
+
   return (
     <div className="bg-animated mb-5">
-      <div className={`container`}>
+      <div className="container">
         <div
           id="carouselExampleDark"
           className="carousel carousel-dark slide"
@@ -25,8 +26,8 @@ const Banner = () => {
           <div
             className={`carousel-inner ${styles.carousel_inner} d-flex align-items-center`}
           >
-            <div className={`carousel-item active`} data-bs-interval="10000">
-              <div className={` m-auto`}></div>
+            <div className="carousel-item active" data-bs-interval="10000">
+              <div className="m-auto"></div>
 
               <div className="carousel-caption d-flex align-items-center">
                 <div className="w-100">
@@ -43,14 +44,13 @@ const Banner = () => {
                       </div>
                     </div>
                     <div className="col-sm-12 col-md-4 pe-3">
-                      <div
-                        className={`${styles.banner_sub_content} py-3 fadeIn`}
-                      >
+                      <div className={`${styles.banner_sub_content} py-3 fadeIn`}>
                         Go to Market Strategy, Branding, Design, Development,
                         Content, Ads and all you need in one package from a
                         leading digital marketing company worldwide.
                       </div>
                       <BookDemoBtn />
+                      {/* Google Sign-In button removed */}
                     </div>
                   </div>
                 </div>
@@ -58,7 +58,6 @@ const Banner = () => {
             </div>
           </div>
         </div>
-        {/* <Clients /> */}
       </div>
     </div>
   );
